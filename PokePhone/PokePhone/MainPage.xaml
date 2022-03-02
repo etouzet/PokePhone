@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pages="clr-namespace:PokePhone.Pages"
+       x:Class="PokePhone.MainPage">
+    <TabBar>
+    
+        <ShellContent Icon="accueil_icone.png">
+            <pages:HomePage>
+            </pages:HomePage>
+        </ShellContent>
+
+        <ShellContent Icon="list_icone.png">
+            <pages:ListePokemon>
+            </pages:ListePokemon>
+        </ShellContent>
+
+        <ShellContent Icon="add_icone.png">
+            <pages:AjoutPokemon>
+            </pages:AjoutPokemon>
+        </ShellContent>
+
+        <ShellContent Icon="bonus_icon.png">
+            <pages:BonusPage>
+            </pages:BonusPage>
+        </ShellContent>
+    
+    </TabBar>
+
+
+</Shell>
