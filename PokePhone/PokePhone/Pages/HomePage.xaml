@@ -11,7 +11,7 @@
 
         <Label Text="Bienvenue sur votre PokePhone !"
                FontSize="Large" />
-
+        
         <Image Source="GifAccueil.gif" IsAnimationPlaying="True"></Image>
         
     </FlexLayout>
