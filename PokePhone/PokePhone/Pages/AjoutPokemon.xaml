@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            x:Class="PokePhone.Pages.AjoutPokemon">
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="PokePhone.Pages.AjoutPokemon">
 
     <StackLayout>
         <Label Text="Ajouter une image : " />
@@ -39,7 +39,7 @@
             <Entry x:Name="saisieAttack" Placeholder="Points d'attaque" Keyboard="Numeric"/>
             <Entry x:Name="saisieDefense" Placeholder="Points de défense" Keyboard="Numeric"/>
         </StackLayout>
-        
+
 
         <Button x:Name="btnValider" Text="Ajouter le Pokémon" Clicked="BtnAjouterPokemon"></Button>
 

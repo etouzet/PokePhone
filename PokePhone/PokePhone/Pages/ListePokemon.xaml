@@ -8,15 +8,16 @@
             CachingStrategy="RecycleElement"
             ItemsSource="{Binding ListOfPokemon}"
             RowHeight="160">
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate >
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Margin="8" Orientation="Horizontal">
-                            <Image Source="{Binding image}" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start"/>
+                            <Image Source="{Binding image}" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="Subtitle"
-                                Text="{Binding name}"/>
+                                Text="{Binding name}"
+                                Padding="0,20,0,0"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

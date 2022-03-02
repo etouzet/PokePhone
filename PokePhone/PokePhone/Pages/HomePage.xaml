@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokePhone.Pages.HomePage">
 
-    <StackLayout>
-        <Label Text="Bienvenu sur l'accueil" />
-    </StackLayout>
+    <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="SpaceEvenly">
+
+        <Image Source="PokePhoneLogo.png" />
+
+        <Label Text="Bienvenue sur votre PokePhone !"
+               FontSize="Large" />
+
+        <Image Source="GifAccueil.gif" IsAnimationPlaying="True"></Image>
+        
+    </FlexLayout>
 
 </ContentPage>

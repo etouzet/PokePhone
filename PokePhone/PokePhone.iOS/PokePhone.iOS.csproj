@@ -133,4 +133,22 @@
       <Name>PokePhone</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\accueil_icone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_icone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bonus_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\list_icone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PokePhoneLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GifAccueil.gif" />
+  </ItemGroup>
 </Project>

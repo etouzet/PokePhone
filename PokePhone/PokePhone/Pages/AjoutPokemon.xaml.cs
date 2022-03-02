@@ -23,6 +23,7 @@ namespace PokePhone.Pages
             {
                 this.saisieHp.PlaceholderColor = Color.Red;
             }
+            
         }
     }
 }
