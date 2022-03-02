@@ -11,7 +11,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="8">
+                        <StackLayout Margin="8" Orientation="Horizontal">
                             <Image Source="{Binding image}" WidthRequest="100" HeightRequest="100" HorizontalOptions="Start"/>
                             <Label
                                 FontAttributes="Bold"

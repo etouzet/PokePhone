@@ -16,5 +16,13 @@ namespace PokePhone.Pages
         {
             InitializeComponent();
         }
+
+        public void BtnAjouterPokemon(object sender, EventArgs args)
+        {
+            if (this.saisieHp.Text != "")
+            {
+                this.saisieHp.PlaceholderColor = Color.Red;
+            }
+        }
     }
 }

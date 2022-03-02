@@ -1,10 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokePhone.Pages.AjoutPokemon">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PokePhone.Pages.AjoutPokemon">
 
-      <StackLayout>
-          <Label Text="Bienvenue sur la page d'ajout de Pokemon !" />
-      </StackLayout>
+    <StackLayout>
+        <Label Text="Ajouter une image : " />
+        <ImageButton Source="https://assistance.leboncoin.info/hc/article_attachments/360003680859/ajouter_des_photos.PNG" HorizontalOptions="Start"/>
+
+        <Label Text="Nom du Pokémon : " />
+        <Entry x:Name="saisieNom" Placeholder="Saisir le nom du Pokémon"/>
+
+        <Label Text="Type du Pokémon : "  />
+        <Picker Title="Selectionner un type">
+            <Picker.Items>
+                <x:String>Acier</x:String>
+                <x:String>Combat</x:String>
+                <x:String>Dragon</x:String>
+                <x:String>Eau</x:String>
+                <x:String>Electrique</x:String>
+                <x:String>Fée</x:String>
+                <x:String>Feu</x:String>
+                <x:String>Glace</x:String>
+                <x:String>Insecte</x:String>
+                <x:String>Normal</x:String>
+                <x:String>Plante</x:String>
+                <x:String>Poison</x:String>
+                <x:String>Psy</x:String>
+                <x:String>Roche</x:String>
+                <x:String>Sol</x:String>
+                <x:String>Spectre</x:String>
+                <x:String>Ténèbres</x:String>
+                <x:String>Vol</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <StackLayout x:Name="attackHp" Orientation="Horizontal" HorizontalOptions="Center">
+            <Entry x:Name="saisieHp" Placeholder="Points de vie" Keyboard="Numeric"/>
+            <Entry x:Name="saisieAttack" Placeholder="Points d'attaque" Keyboard="Numeric"/>
+            <Entry x:Name="saisieDefense" Placeholder="Points de défense" Keyboard="Numeric"/>
+        </StackLayout>
+        
+
+        <Button x:Name="btnValider" Text="Ajouter le Pokémon" Clicked="BtnAjouterPokemon"></Button>
+
+    </StackLayout>
 
 </ContentPage>

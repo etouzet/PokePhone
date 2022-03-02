@@ -30,6 +30,7 @@ namespace PokePhone.ViewModel
                 MyPokemon mypokemon = new MyPokemon();
                 mypokemon.name = pokemon.Name;
                 mypokemon.image = pokemon.Sprites.FrontDefault;
+                mypokemon.hp = pokemon.Stats[0].BaseStat;
                 ListOfPokemon.Add(mypokemon);
             }
         }
