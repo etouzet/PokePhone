@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PokePhone.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListePokemon : ContentPage
+    public partial class AffichagePokemon : ContentView
     {
-        public ListePokemon()
+        public AffichagePokemon()
         {
             InitializeComponent();
-            BindingContext = new ListViewModel();
+            BindingContext = new AffichagePokemonViewModel();
         }
     }
 }
