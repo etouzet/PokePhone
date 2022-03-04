@@ -10,15 +10,15 @@ namespace PokePhone.ViewModel
 {
     class AffichagePokemonViewModel : ContentView
     {
+        public MyPokemon PokemonAfficher;
         public AffichagePokemonViewModel()
         {
-            MyPokemon PokemonAfficher = new MyPokemon();
-            InitPokemon(PokemonAfficher);
+            PokemonAfficher = new MyPokemon();
         }
 
-        public async void InitPokemon(MyPokemon pokemonAfficher)
+        public void DefinirPokemonAfficher()
         {
-            
+            PokemonAfficher = null; /*Chopper le dernierPokemonTapper*/
         }
     }
 }

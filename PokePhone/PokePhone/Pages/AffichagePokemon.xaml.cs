@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace PokePhone.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AffichagePokemon : ContentView
+    public partial class AffichagePokemon : ContentPage
     {
         public AffichagePokemon()
         {

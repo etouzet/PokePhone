@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokePhone.Pages.AffichagePokemon">
-  <ContentView.Content>
+  <ContentPage.Content>
       <StackLayout>
           <Label x:Name="nomPokemon" FontSize="Header" Text="{Binding nom}"/>
           <Image x:Name="imagePokemon" Source="{Binding image}"/>
@@ -13,5 +13,5 @@
                 <Label x:Name="defensePokemon" Text="{Binding defense}"/>
             </StackLayout>
         </StackLayout>
-  </ContentView.Content>
-</ContentView>
+  </ContentPage.Content>
+</ContentPage>

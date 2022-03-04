@@ -17,5 +17,7 @@ namespace PokePhone.Model
             public string type { get; set; }
             //Id du pokémon dans l'Api, pour pouvoir l'identifier et afficher le bon dans la liste
             public int id { get; set; }
+            //Cet attribut sert pour faire la couleur de fond lors de l'affichage du pokémon
+            public Color couleurType { get; set; }
         }
 }
