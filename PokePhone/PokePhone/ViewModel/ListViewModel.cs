@@ -37,6 +37,8 @@ namespace PokePhone.ViewModel
                 mypokemon.attaque = pokemon.Stats[1].BaseStat;
                 //Récupération de la défense du pokémon
                 mypokemon.defense = pokemon.Stats[2].BaseStat;
+                //Récupération du type du pokémon
+                mypokemon.type = pokemon.Types[0].Type.Name;
                 ListOfPokemon.Add(mypokemon);
             }
         }

@@ -14,5 +14,6 @@ namespace PokePhone.Model
             public int hp { get; set; }
             public int attaque { get; set; }
             public int defense { get; set; }
+            public string type { get; set; }
         }
 }

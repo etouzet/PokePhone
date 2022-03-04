@@ -4,54 +4,18 @@
         x:Class="PokePhone.Pages.ListePokemon">
 
     <ContentPage.Content>
-        <ListView
-    CachingStrategy="RecycleElement"
-    ItemsSource="{Binding ListOfPokemon}"
-    RowHeight="300">
-            <ListView.ItemTemplate >
+        <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding ListOfPokemon}" RowHeight="300">
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical" x:Name="affichagePokemon">
-                            <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
-                                <Image Source="{Binding image}" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="Subtitle"
-                                    Text="{Binding name}"
-                                    Padding="0,20,0,0"/>
-                            </StackLayout>
-
-                            <StackLayout Orientation="Horizontal" Margin="8" x:Name="affichageStatistiquesPokemon">
-                                <StackLayout Orientation="Vertical" x:Name="nomValeursPokemon">
-                                    <Label
-                                    FontSize="Subtitle"
-                                    Text="Points de vie : "
-                                    Padding="0,20,0,0"/>
-                                    <Label
-                                    FontSize="Subtitle"
-                                    Text="Points de d'attaque : "
-                                    Padding="0,20,0,0"/>
-                                    <Label
-                                    FontSize="Subtitle"
-                                    Text="Points de défense : "
-                                    Padding="0,20,0,0"/>
-                                </StackLayout>
-
-                                <StackLayout Orientation="Vertical" x:Name="valeursStatsPokemon">
-                                    <Label
-                                    FontSize="Body"                                    
-                                    Text="{Binding hp}"
-                                    Padding="0,20,0,0"/>
-                                    <Label
-                                    FontSize="Body"
-                                    Text="{Binding attaque}"
-                                    Padding="0,20,0,0"/>
-                                    <Label
-                                    FontSize="Body"
-                                    Text="{Binding defense}"
-                                    Padding="0,20,0,0"/>
-                                </StackLayout>
-                            </StackLayout>
+                        <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="AfficherPokemon" />
+                                <!--îîî  Command="AfficherPokemon" CommandParameter="{Binding type}" îîî-->
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="{Binding image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
+                            <Label x:Name="nomPokemon" FontAttributes="Bold" Text="{Binding name}" Padding="0,20,0,0"/>
+                            <Label x:Name="typePokemon" Text="{Binding type}" Padding="0,20,0,0"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
