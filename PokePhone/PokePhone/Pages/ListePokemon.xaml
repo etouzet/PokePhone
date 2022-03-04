@@ -9,8 +9,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="AfficherPokemon" />
+                            <StackLayout.GestureRecognizers Command="{Binding recupererDonneesPokemon}">
+                                <TapGestureRecognizer NumberOfTapsRequired="1"/>
                                 <!--îîî  Command="AfficherPokemon" CommandParameter="{Binding type}" îîî-->
                             </StackLayout.GestureRecognizers>
                             <Image Source="{Binding image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>

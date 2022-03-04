@@ -15,5 +15,7 @@ namespace PokePhone.Model
             public int attaque { get; set; }
             public int defense { get; set; }
             public string type { get; set; }
+            //Id du pokémon dans l'Api, pour pouvoir l'identifier et afficher le bon dans la liste
+            public int id { get; set; }
         }
 }
