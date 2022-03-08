@@ -1,4 +1,5 @@
-﻿using PokePhone.ViewModel;
+﻿using PokePhone.Model;
+using PokePhone.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,12 @@ namespace PokePhone.Pages
         {
             InitializeComponent();
             BindingContext = new ListViewModel();
+        }
+
+        void OnClick(object sender, ItemTappedEventArgs e)
+        {
+            MyPokemon current = (e.Item as MyPokemon);
+            Navigation.PushAsync(new AffichagePokemon(current));
         }
     }
 }

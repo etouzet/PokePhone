@@ -4,12 +4,12 @@
              x:Class="PokePhone.Pages.AffichagePokemon">
   <ContentPage.Content>
       <StackLayout>
-          <Label x:Name="nomPokemon" FontSize="Header" Text="{Binding nom}"/>
+          <Label x:Name="nomPokemon" FontSize="Header" Text="{Binding name}"/>
           <Image x:Name="imagePokemon" Source="{Binding image}"/>
           <Label x:Name="typePokemon" FontSize="Subtitle" Text="{Binding type}"/>
             <StackLayout>
-                <Label x:Name="forcePokemon" Text="{Binding force}"/>
-                <Label x:Name="pvPokemon" Text="{Binding pv}"/>
+                <Label x:Name="forcePokemon" Text="{Binding attaque}"/>
+                <Label x:Name="pvPokemon" Text="{Binding hp}"/>
                 <Label x:Name="defensePokemon" Text="{Binding defense}"/>
             </StackLayout>
         </StackLayout>

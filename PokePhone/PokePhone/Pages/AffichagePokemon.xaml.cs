@@ -1,4 +1,5 @@
-﻿using PokePhone.ViewModel;
+﻿using PokePhone.Model;
+using PokePhone.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AffichagePokemon : ContentPage
     {
-        public AffichagePokemon()
+        public AffichagePokemon(MyPokemon pokemon)
         {
             InitializeComponent();
-            BindingContext = new AffichagePokemonViewModel();
+            BindingContext = pokemon;
         }
     }
 }

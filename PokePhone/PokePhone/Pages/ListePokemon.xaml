@@ -4,15 +4,12 @@
         x:Class="PokePhone.Pages.ListePokemon">
 
     <ContentPage.Content>
-        <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding ListOfPokemon}" RowHeight="125">
+        <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding ListOfPokemon}" RowHeight="125" ItemTapped="OnClick" SelectedItem="{Binding MyPokemon}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Frame BackgroundColor="{Binding couleurType}" CornerRadius="10"  Margin="10">
                             <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
-                                <StackLayout.GestureRecognizers Command="recupererDonneesPokemon" CommandParameter="{Binding id}">
-                                    <TapGestureRecognizer NumberOfTapsRequired="1"/>
-                                </StackLayout.GestureRecognizers>
                                 <Image Source="{Binding image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
                                 <Label x:Name="nomPokemon" FontAttributes="Bold" Text="{Binding name}" Padding="0,20,0,0"/>
                                 <Label x:Name="typePokemon" Text="{Binding type}" Padding="0,20,0,0"/>

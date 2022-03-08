@@ -23,8 +23,10 @@ namespace PokePhone.ViewModel
         public MyPokemon DernierPokemonTapper { get; private set; }
 
         public async void InitList()
-        { 
-            PokeApiClient pokeClient = new PokeApiClient();
+        {
+
+        PokeApiClient pokeClient = new PokeApiClient();
+        
 
             //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
             for (int i = 1; i <= 20; i++)

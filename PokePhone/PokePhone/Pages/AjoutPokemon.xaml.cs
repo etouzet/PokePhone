@@ -26,7 +26,7 @@ namespace PokePhone.Pages
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("Not supported", "Your device does not currently support this functionality", "Ok");
+                await DisplayAlert("Non supporté", "Votre appareil ne supporte pas cette fonctionnalité", "Ok");
                 return;
 
             }
