@@ -59,23 +59,23 @@ namespace PokePhone.ViewModel
         private Dictionary<string,Color> CreerDictionnaireTypeCouleurPokemons()
         {
             Dictionary<string, Color> listeCouleursTypePokemons = new Dictionary<string, Color>();
-            listeCouleursTypePokemons.Add("fire", Color.Orange);
-            listeCouleursTypePokemons.Add("ice", Color.LightBlue);
-            listeCouleursTypePokemons.Add("water", Color.Blue);
-            listeCouleursTypePokemons.Add("grass", Color.LightGreen);
-            listeCouleursTypePokemons.Add("fighting", Color.Red);
-            listeCouleursTypePokemons.Add("flying", Color.Purple);
-            listeCouleursTypePokemons.Add("electric", Color.Yellow);
-            listeCouleursTypePokemons.Add("ground", Color.RosyBrown);
-            listeCouleursTypePokemons.Add("psychic", Color.Pink);
-            listeCouleursTypePokemons.Add("rock", Color.Brown);
-            listeCouleursTypePokemons.Add("bug", Color.Green);
-            listeCouleursTypePokemons.Add("dragon", Color.DarkBlue);
-            listeCouleursTypePokemons.Add("ghost", Color.DarkMagenta);
-            listeCouleursTypePokemons.Add("dark", Color.DarkGray);
-            listeCouleursTypePokemons.Add("steel", Color.LightGray);
-            listeCouleursTypePokemons.Add("fairy", Color.LightPink);
-            listeCouleursTypePokemons.Add("normal", Color.Khaki);
+            listeCouleursTypePokemons.Add("fire", Color.FromRgb(254, 158, 84));
+            listeCouleursTypePokemons.Add("ice", Color.FromRgb(117, 207, 193));
+            listeCouleursTypePokemons.Add("water", Color.FromRgb(79, 146, 215));
+            listeCouleursTypePokemons.Add("grass", Color.FromRgb(102, 189, 90));
+            listeCouleursTypePokemons.Add("fighting", Color.FromRgb(207, 64, 108));
+            listeCouleursTypePokemons.Add("flying", Color.FromRgb(143, 171, 223));
+            listeCouleursTypePokemons.Add("electric", Color.FromRgb(244, 211, 58));
+            listeCouleursTypePokemons.Add("ground", Color.FromRgb(218, 123, 67));
+            listeCouleursTypePokemons.Add("psychic", Color.FromRgb(250, 115, 123));
+            listeCouleursTypePokemons.Add("rock", Color.FromRgb(199, 185, 141));
+            listeCouleursTypePokemons.Add("bug", Color.FromRgb(146, 194, 44));
+            listeCouleursTypePokemons.Add("dragon", Color.FromRgb(6, 111, 196));
+            listeCouleursTypePokemons.Add("ghost", Color.FromRgb(82, 107, 175));
+            listeCouleursTypePokemons.Add("dark", Color.FromRgb(90, 84, 102));
+            listeCouleursTypePokemons.Add("steel", Color.FromRgb(79, 139, 159));
+            listeCouleursTypePokemons.Add("fairy", Color.FromRgb(237, 145, 230));
+            listeCouleursTypePokemons.Add("normal", Color.FromRgb(146, 155, 164));
 
             return listeCouleursTypePokemons;
         }
