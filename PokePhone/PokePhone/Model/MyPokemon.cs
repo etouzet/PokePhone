@@ -19,5 +19,11 @@ namespace PokePhone.Model
             public int id { get; set; }
             //Cet attribut sert pour faire la couleur de fond lors de l'affichage du pokémon
             public Color couleurType { get; set; }
+
+            public string VersChaine()
+            {
+                return "Nom : " + this.name + " Type " + this.type + " Attaque " + this.attaque.ToString() +
+                " HP " + this.hp.ToString() + " Defense " + this.defense.ToString() + " Chemin de l'image " + this.image;
+            }
         }
 }
