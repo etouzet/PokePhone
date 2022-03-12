@@ -21,7 +21,7 @@ namespace PokePhone.Pages
 
         async void AjouterImage(object sender, System.EventArgs e)
         {
-            //! added using Plugin.Media;
+            
             await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -35,7 +35,7 @@ namespace PokePhone.Pages
             {
                 PhotoSize = PhotoSize.Medium
             };
-            // if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
+
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
 
             this.saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
