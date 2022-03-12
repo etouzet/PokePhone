@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PokePhone.ViewModel;
+using PokePhone.Model;
 
 namespace PokePhone.Pages
 {
@@ -19,7 +20,27 @@ namespace PokePhone.Pages
             InitializeComponent();
         }
 
-        async void AjouterImage(object sender, System.EventArgs e)
+        public MyPokemon CreerPokemon()
+        {
+            MyPokemon nouveauPokemon = new MyPokemon();
+            try
+            {
+                nouveauPokemon.name = this.saisieNom.Text;
+                nouveauPokemon.type = this.saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.hp = Convert.ToInt32(this.saisieHp.Text);
+                nouveauPokemon.attaque = Convert.ToInt32(this.saisieAttack.Text);
+                nouveauPokemon.defense = Convert.ToInt32(this.saisieDefense.Text);
+                nouveauPokemon.image = this.saisieImage.Source.ToString();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Une erreur est survenue durant l'ajout du pokémon");
+            }
+
+            return nouveauPokemon;
+        }
+        //TODO : Regler Franglais !
+        public async void AjouterImage(object sender, System.EventArgs e)
         {
             
             await CrossMedia.Current.Initialize();
@@ -28,10 +49,9 @@ namespace PokePhone.Pages
             {
                 await DisplayAlert("Non supporté", "Votre appareil ne supporte pas cette fonctionnalité", "Ok");
                 return;
-
             }
 
-            var mediaOptions = new PickMediaOptions()
+            PickMediaOptions mediaOptions = new PickMediaOptions()
             {
                 PhotoSize = PhotoSize.Medium
             };
@@ -42,20 +62,31 @@ namespace PokePhone.Pages
 
         }
 
-        public void BtnAjouterPokemon(object sender, EventArgs args)
+        public async void BtnAjouterPokemon(object sender, EventArgs args)
         {
 
-            if (this.saisieHp.Text != "" || this.saisieAttack.Text != "" || this.saisieDefense.Text != "" || this.saisieNom.Text != "")
+            if (!ChampsSonRemplis())
             {
                 this.saisieHp.PlaceholderColor = Color.Red;
                 this.saisieAttack.PlaceholderColor = Color.Red;
                 this.saisieDefense.PlaceholderColor = Color.Red;
                 this.saisieNom.PlaceholderColor = Color.Red;
                 this.saisieType.TitleColor = Color.Red;
-
+                await DisplayAlert("Erreur", "Veuilliez remplier tous les champs", "Ok");
             }
-            
+            else
+            {
+                MyPokemon myPokemon = CreerPokemon();
+                await DisplayAlert("Ajouter Pokémon", myPokemon.name + " a été crée", "Ok");
+                await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
+                //Il faut ensuite entrer le pokémon en BDD
+            }
+
         }
 
+        private bool ChampsSonRemplis()
+        {
+            return this.saisieHp.Text != "" && this.saisieAttack.Text != "" && this.saisieDefense.Text != "" && this.saisieNom.Text != "";
+        }
     }
 }

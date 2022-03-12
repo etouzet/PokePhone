@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokePhone.Model;
+using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,6 +8,19 @@ namespace PokePhone
 {
     public partial class App : Application
     {
+
+        static BaseDeDonnees baseDeDonnees;
+        private static BaseDeDonnees BaseDeDonnees
+        {
+            get
+            {
+                if (baseDeDonnees == null)
+                {
+                    baseDeDonnees = new BaseDeDonnees(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)));
+                }
+                return baseDeDonnees;
+            }
+        }
         public App()
         {
             InitializeComponent();
