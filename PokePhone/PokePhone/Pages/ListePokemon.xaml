@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        x:Class="PokePhone.Pages.ListePokemon">
+        x:Class="PokePhone.Pages.ListePokemon"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.Content>
         <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding ListOfPokemon}" RowHeight="125" ItemTapped="OnClick" SelectedItem="{Binding MyPokemon}" BackgroundColor="#2f2733">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame BackgroundColor="{Binding couleurType}" CornerRadius="10"  Margin="10">
+                        <Frame BackgroundColor="{Binding CouleurType}" CornerRadius="10"  Margin="10">
                             <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
-                                <Image Source="{Binding image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
-                                <Label x:Name="nomPokemon" FontAttributes="Bold" Text="{Binding name}" Padding="0,20,0,0"/>
-                                <Label x:Name="typePokemon" Text="{Binding type}" Padding="0,20,0,0"/>
+                                <Image Source="{Binding Image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
+                                <Label x:Name="nomPokemon" FontAttributes="Bold" Text="{Binding Name}" Padding="0,20,0,0"/>
+                                <Label x:Name="typePokemon" Text="{Binding Type}" Padding="0,20,0,0"/>
                             </StackLayout>
                         </Frame>
                     </ViewCell>

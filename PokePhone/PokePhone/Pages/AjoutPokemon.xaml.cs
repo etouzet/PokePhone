@@ -34,12 +34,12 @@ namespace PokePhone.Pages
             MyPokemon nouveauPokemon = new MyPokemon();
             try
             {
-                nouveauPokemon.name = saisieNom.Text;
-                nouveauPokemon.type = saisieType.Items[saisieType.SelectedIndex];
-                nouveauPokemon.hp = Convert.ToInt32(saisieHp.Text);
-                nouveauPokemon.attaque = Convert.ToInt32(saisieAttack.Text);
-                nouveauPokemon.defense = Convert.ToInt32(saisieDefense.Text);
-                nouveauPokemon.image = saisieImage.Source.ToString();
+                nouveauPokemon.Name = this.saisieNom.Text;
+                nouveauPokemon.Type = this.saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.Hp = Convert.ToInt32(this.saisieHp.Text);
+                nouveauPokemon.Attaque = Convert.ToInt32(this.saisieAttack.Text);
+                nouveauPokemon.Defense = Convert.ToInt32(this.saisieDefense.Text);
+                nouveauPokemon.Image = this.saisieImage.Source.ToString();
             }
             catch (Exception)
             {
@@ -51,7 +51,7 @@ namespace PokePhone.Pages
         //TODO : Regler Franglais !
         public async void AjouterImage(object sender, System.EventArgs e)
         {
-            //! added using Plugin.Media;
+            
             await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -64,7 +64,7 @@ namespace PokePhone.Pages
             {
                 PhotoSize = PhotoSize.Medium
             };
-            // if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
+
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
 
             saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
@@ -86,7 +86,7 @@ namespace PokePhone.Pages
             else
             {
                 MyPokemon myPokemon = CreerPokemon();
-                await DisplayAlert("Ajouter Pokémon", myPokemon.name + " a été crée", "Ok");
+                await DisplayAlert("Ajouter Pokémon", myPokemon.Name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
                 AjouterPokemonBDD(myPokemon);
             }
