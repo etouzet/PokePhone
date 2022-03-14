@@ -15,6 +15,7 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AjoutPokemon : ContentPage
     {
+        
         public AjoutPokemon()
         {
             InitializeComponent();
@@ -34,12 +35,12 @@ namespace PokePhone.Pages
             MyPokemon nouveauPokemon = new MyPokemon();
             try
             {
-                nouveauPokemon.Name = this.saisieNom.Text;
-                nouveauPokemon.Type = this.saisieType.Items[saisieType.SelectedIndex];
-                nouveauPokemon.Hp = Convert.ToInt32(this.saisieHp.Text);
-                nouveauPokemon.Attaque = Convert.ToInt32(this.saisieAttack.Text);
-                nouveauPokemon.Defense = Convert.ToInt32(this.saisieDefense.Text);
-                nouveauPokemon.Image = this.saisieImage.Source.ToString();
+                nouveauPokemon.Name = saisieNom.Text;
+                nouveauPokemon.Type = saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
+                nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
+                nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
+                nouveauPokemon.Image = Convert.ToString(saisieImage.Source);
             }
             catch (Exception)
             {
@@ -49,9 +50,8 @@ namespace PokePhone.Pages
             return nouveauPokemon;
         }
         //TODO : Regler Franglais !
-        public async void AjouterImage(object sender, System.EventArgs e)
+        public async void AjouterImage(object sender, EventArgs e)
         {
-            
             await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -64,16 +64,12 @@ namespace PokePhone.Pages
             {
                 PhotoSize = PhotoSize.Medium
             };
-
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-
             saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
-
         }
 
         public async void BtnAjouterPokemon(object sender, EventArgs args)
         {
-
             if (!ChampsSonRemplis())
             {
                 saisieHp.PlaceholderColor = Color.Red;
@@ -88,14 +84,14 @@ namespace PokePhone.Pages
                 MyPokemon myPokemon = CreerPokemon();
                 await DisplayAlert("Ajouter Pokémon", myPokemon.Name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
-                AjouterPokemonBDD(myPokemon);
+                //AjouterPokemonBDD(myPokemon);
             }
-
         }
 
         private bool ChampsSonRemplis()
         {
-            return saisieHp.Text != "" && saisieAttack.Text != "" && saisieDefense.Text != "" && saisieNom.Text != "";
+            return saisieHp.Text != "" && saisieAttack.Text != "" 
+                && saisieDefense.Text != "" && saisieNom.Text != "";
         }
     }
 }

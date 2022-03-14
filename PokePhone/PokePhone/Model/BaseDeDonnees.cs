@@ -6,7 +6,7 @@ using SQLite;
 
 namespace PokePhone.Model
 {
-    class BaseDeDonnees
+    public class BaseDeDonnees
     {
         readonly SQLiteAsyncConnection _baseDeDonnees;
 

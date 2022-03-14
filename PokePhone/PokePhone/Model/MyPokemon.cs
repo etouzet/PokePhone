@@ -29,7 +29,7 @@ namespace PokePhone.Model
             public string VersChaine()
             {
                 return "Nom : " + this.Name + " Type " + this.Type + " Attaque " + this.Attaque.ToString() +
-                " HP " + this.Hp.ToString() + " Defense " + this.Defense.ToString() + " Chemin de l'image " + this.Image;
+                " HP " + this.Hp.ToString() + " Defense " + this.Defense.ToString() + " Chemin de l'image " + this.Image.ToString();
             }
         }
 }

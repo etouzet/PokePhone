@@ -10,13 +10,14 @@ namespace PokePhone
     {
 
         private static BaseDeDonnees baseDeDonnees;
+
         public static BaseDeDonnees BaseDeDonnees
         {
             get
             {
                 if (baseDeDonnees == null)
                 {
-                    baseDeDonnees = new BaseDeDonnees(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)));
+                    baseDeDonnees = new BaseDeDonnees(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "cheminBDD"));
                 }
                 return baseDeDonnees;
             }
