@@ -25,5 +25,10 @@ namespace PokePhone.Model
         {
             return _baseDeDonnees.InsertAsync(myPokemon);
         }
+
+        internal Task GetPeopleAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

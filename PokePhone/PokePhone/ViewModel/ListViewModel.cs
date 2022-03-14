@@ -22,6 +22,32 @@ namespace PokePhone.ViewModel
         public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
         public MyPokemon DernierPokemonTapper { get; private set; }
 
+        //TODO : rendre ceci fonctionnelle pour afficher la liste des pokémons depuis la base de données (seulement OnAppearing()
+        //Tuto : https://docs.microsoft.com/fr-fr/xamarin/get-started/tutorials/local-database/?tabs=vswin&tutorial-step=3
+        /****added code****/
+        /*
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            collectionView.ItemsSource = await App.Database.GetPeopleAsync();
+        }
+        //TODO mixée cette fonction avec ajouter pokémon
+        async void OnButtonClicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(nameEntry.Text) && !string.IsNullOrWhiteSpace(ageEntry.Text))
+            {
+                await App.Database.SavePersonAsync(new Person
+                {
+                    Name = nameEntry.Text,
+                    Age = int.Parse(ageEntry.Text)
+                });
+
+                nameEntry.Text = ageEntry.Text = string.Empty;
+                collectionView.ItemsSource = await App.BaseDeDonnees.GetPeopleAsync();
+            }
+        }
+        /****added code****/
+
         public async void InitList()
         {
 

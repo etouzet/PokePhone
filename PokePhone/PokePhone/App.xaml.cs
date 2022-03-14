@@ -9,8 +9,8 @@ namespace PokePhone
     public partial class App : Application
     {
 
-        static BaseDeDonnees baseDeDonnees;
-        private static BaseDeDonnees BaseDeDonnees
+        private static BaseDeDonnees baseDeDonnees;
+        public static BaseDeDonnees BaseDeDonnees
         {
             get
             {

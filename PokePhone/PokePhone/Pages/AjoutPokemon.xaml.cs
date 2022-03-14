@@ -19,18 +19,27 @@ namespace PokePhone.Pages
         {
             InitializeComponent();
         }
+        /****added code****/
+        //TODO : trouver un truc pour l'ID des pokémons, car je ne l'ai pas définie dans CreerPokemon()
+        async void AjouterPokemonBDD(MyPokemon myPokemon)
+        {
+            await App.BaseDeDonnees.SauvegarderPokemon(myPokemon);
+            //nameEntry.Text = ageEntry.Text = string.Empty;
+            //collectionView.ItemsSource = await App.BaseDeDonnees.GetPeopleAsync();
+        }
+        /****added code****/
 
         public MyPokemon CreerPokemon()
         {
             MyPokemon nouveauPokemon = new MyPokemon();
             try
             {
-                nouveauPokemon.name = this.saisieNom.Text;
-                nouveauPokemon.type = this.saisieType.Items[saisieType.SelectedIndex];
-                nouveauPokemon.hp = Convert.ToInt32(this.saisieHp.Text);
-                nouveauPokemon.attaque = Convert.ToInt32(this.saisieAttack.Text);
-                nouveauPokemon.defense = Convert.ToInt32(this.saisieDefense.Text);
-                nouveauPokemon.image = this.saisieImage.Source.ToString();
+                nouveauPokemon.name = saisieNom.Text;
+                nouveauPokemon.type = saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.hp = Convert.ToInt32(saisieHp.Text);
+                nouveauPokemon.attaque = Convert.ToInt32(saisieAttack.Text);
+                nouveauPokemon.defense = Convert.ToInt32(saisieDefense.Text);
+                nouveauPokemon.image = saisieImage.Source.ToString();
             }
             catch (Exception)
             {
@@ -58,7 +67,7 @@ namespace PokePhone.Pages
             // if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
 
-            this.saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+            saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
 
         }
 
@@ -67,11 +76,11 @@ namespace PokePhone.Pages
 
             if (!ChampsSonRemplis())
             {
-                this.saisieHp.PlaceholderColor = Color.Red;
-                this.saisieAttack.PlaceholderColor = Color.Red;
-                this.saisieDefense.PlaceholderColor = Color.Red;
-                this.saisieNom.PlaceholderColor = Color.Red;
-                this.saisieType.TitleColor = Color.Red;
+                saisieHp.PlaceholderColor = Color.Red;
+                saisieAttack.PlaceholderColor = Color.Red;
+                saisieDefense.PlaceholderColor = Color.Red;
+                saisieNom.PlaceholderColor = Color.Red;
+                saisieType.TitleColor = Color.Red;
                 await DisplayAlert("Erreur", "Veuilliez remplier tous les champs", "Ok");
             }
             else
@@ -79,14 +88,14 @@ namespace PokePhone.Pages
                 MyPokemon myPokemon = CreerPokemon();
                 await DisplayAlert("Ajouter Pokémon", myPokemon.name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
-                //Il faut ensuite entrer le pokémon en BDD
+                AjouterPokemonBDD(myPokemon);
             }
 
         }
 
         private bool ChampsSonRemplis()
         {
-            return this.saisieHp.Text != "" && this.saisieAttack.Text != "" && this.saisieDefense.Text != "" && this.saisieNom.Text != "";
+            return saisieHp.Text != "" && saisieAttack.Text != "" && saisieDefense.Text != "" && saisieNom.Text != "";
         }
     }
 }
