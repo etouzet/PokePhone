@@ -10,22 +10,26 @@ namespace PokePhone.Model
 {
         public class MyPokemon
         {
-            public string name { get; set; }
-            public string image { get; set; }
-            public int hp { get; set; }
-            public int attaque { get; set; }
-            public int defense { get; set; }
-            public string type { get; set; }
+            public string Name { get; set; }
+            public string Image { get; set; }
+            public string ImageFemelle { get; set; }
+            public string ImageShiny { get; set; }
+            public int Hp { get; set; }
+            public int Attaque { get; set; }
+            public int Defense { get; set; }
+            public string Type { get; set; }
+            public string Ability { get; set; }
+            public string Gender { get; set; }
             //Id du pokémon dans l'Api (et la BDD), pour pouvoir l'identifier et afficher le bon dans la liste
             [PrimaryKey,AutoIncrement]
-            public int id { get; set; }
+            public int Id { get; set; }
             //Cet attribut sert pour faire la couleur de fond lors de l'affichage du pokémon
-            public Color couleurType { get; set; }
+            public Color CouleurType { get; set; }
 
             public string VersChaine()
             {
-                return "Nom : " + this.name + " Type " + this.type + " Attaque " + this.attaque.ToString() +
-                " HP " + this.hp.ToString() + " Defense " + this.defense.ToString() + " Chemin de l'image " + this.image;
+                return "Nom : " + this.Name + " Type " + this.Type + " Attaque " + this.Attaque.ToString() +
+                " HP " + this.Hp.ToString() + " Defense " + this.Defense.ToString() + " Chemin de l'image " + this.Image;
             }
         }
 }

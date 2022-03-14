@@ -2,16 +2,44 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokePhone.Pages.AffichagePokemon">
-  <ContentPage.Content>
-      <StackLayout>
-            <Image x:Name="imagePokemon" Source="{Binding image}" HeightRequest="200" WidthRequest="200"/>
-            <Label x:Name="nomPokemon" Text="{Binding name}"/>
-            <Label x:Name="typePokemon" FontSize="Subtitle" Text="{Binding type}"/>
-            <StackLayout>
-                <Label x:Name="forcePokemon" Text="{Binding attaque}"/>
-                <Label x:Name="pvPokemon" Text="{Binding hp}"/>
-                <Label x:Name="defensePokemon" Text="{Binding defense}"/>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#2f2733">
+            <Label x:Name="nomPokemon" Text="{Binding Name}"  TextColor="White" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold Italic"/>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <Image Source="{Binding Image}" HeightRequest="150" WidthRequest="200"/>
+                    <Label Text="Normal" HorizontalOptions="Center" TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Image x:Name="imagePokemon" Source="{Binding ImageShiny}" HeightRequest="150" WidthRequest="200"/>
+                    <Label Text="Shiny" HorizontalOptions="Center" TextColor="White"/>
+                </StackLayout>
+                
             </StackLayout>
+
+
+
+            <Frame BackgroundColor="{Binding CouleurType}" CornerRadius="10"  Margin="10">
+                <StackLayout Orientation="Horizontal" Spacing="80">
+                    <StackLayout Margin="8" Orientation="Vertical" Spacing="10">
+                        <Label Text="Type :" TextColor="White" FontAttributes="Bold"/>
+                        <Label Text="{Binding Type}"  TextColor="White"/>
+                        <Label Text="Abilities :" TextColor="White" FontAttributes="Bold"/>
+                        <Label Text="{Binding Ability}" TextColor="White"/>
+                        <Label Text="Gender :" TextColor="White" FontAttributes="Bold"/>
+                        <Label Text="{Binding Gender}" TextColor="White"/>
+                    </StackLayout>
+                    <StackLayout Margin="8" Orientation="Vertical" Spacing="10">
+                        <Label Text="Health :" TextColor="White" FontAttributes="Bold"/>
+                        <Label x:Name="pvPokemon" Text="{Binding Hp}"  TextColor="White"/>
+                        <Label Text="Attack :" TextColor="White" FontAttributes="Bold"/>
+                        <Label x:Name="forcePokemon" Text="{Binding Attaque}" TextColor="White"/>
+                        <Label Text="Defense :" TextColor="White" FontAttributes="Bold"/>
+                        <Label x:Name="defensePokemon" Text="{Binding Defense}"  TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            
         </StackLayout>
   </ContentPage.Content>
 </ContentPage>

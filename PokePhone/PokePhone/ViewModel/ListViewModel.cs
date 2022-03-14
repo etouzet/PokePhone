@@ -33,20 +33,31 @@ namespace PokePhone.ViewModel
             {
                 Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
                 MyPokemon mypokemon = new MyPokemon();
-                mypokemon.name = pokemon.Name;
-                mypokemon.image = pokemon.Sprites.FrontDefault;
+                mypokemon.Name = pokemon.Name;
+                //Récupération des images du pokémon
+                mypokemon.Image = pokemon.Sprites.FrontDefault;
+                mypokemon.ImageFemelle = pokemon.Sprites.FrontFemale;
+                mypokemon.ImageShiny = pokemon.Sprites.FrontShiny;
                 //Récupération des hp du pokémon
-                mypokemon.hp = pokemon.Stats[0].BaseStat;
+                mypokemon.Hp = pokemon.Stats[0].BaseStat;
                 //Récupération des points d'attaque du pokémon
-                mypokemon.attaque = pokemon.Stats[1].BaseStat;
+                mypokemon.Attaque = pokemon.Stats[1].BaseStat;
                 //Récupération de la défense du pokémon
-                mypokemon.defense = pokemon.Stats[2].BaseStat;
+                mypokemon.Defense = pokemon.Stats[2].BaseStat;
                 //Récupération du type du pokémon
-                mypokemon.type = pokemon.Types[0].Type.Name;
+                mypokemon.Type = pokemon.Types[0].Type.Name;
                 //Récupération de l'id du pokémon
-                mypokemon.id = pokemon.Id;
+                mypokemon.Id = pokemon.Id;
+                //Récupération des abilités du pokémon
+                mypokemon.Ability = pokemon.Abilities[0].Ability.Name;
+                mypokemon.Gender = "Male";
+                if (mypokemon.ImageFemelle != null)
+                {
+                    mypokemon.Gender += ", Female";
+                }
+                
                 //Récupération de la couleur du type du pokémon
-                mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.type);
+                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
             }
         }
