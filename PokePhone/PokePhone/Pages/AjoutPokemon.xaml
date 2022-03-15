@@ -5,15 +5,15 @@
              Shell.NavBarIsVisible="False">
 
     <StackLayout BackgroundColor="#2f2733">
-        <Label Text="Ajouter une image : " TextColor="White"/>
-        <ImageButton x:Name="saisieImage" Source="https://assistance.leboncoin.info/hc/article_attachments/360003680859/ajouter_des_photos.PNG" Clicked="AjouterImage"
-                     HorizontalOptions="Start" WidthRequest="100" HeightRequest="100" BackgroundColor="White"/>
+        <Label Text="Ajouter une image : " TextColor="White" Margin="20,20,0,0" FontAttributes="Bold"/>
+        <ImageButton x:Name="saisieImage" Source="add.png" Clicked="AjouterImage"
+                     HorizontalOptions="Start" WidthRequest="100" HeightRequest="100" BackgroundColor="White" Margin="20,10,0,20"/>
 
-        <Label Text="Nom du Pokémon : " TextColor="White"/>
-        <Entry x:Name="saisieNom" Placeholder="Saisir le nom du Pokémon" TextColor="White" PlaceholderColor="White"/>
+        <Label Text="Nom du Pokémon : " TextColor="White" FontAttributes="Bold" Margin="20,0,0,0"/>
+        <Entry x:Name="saisieNom" Placeholder="Saisir le nom du Pokémon" TextColor="White" PlaceholderColor="White" Margin="20,0,20,20"/>
 
-        <Label Text="Type du Pokémon : "  TextColor="White"/>
-        <Picker x:Name="saisieType" Title="Selectionner un type" TitleColor="White" TextColor="White">
+        <Label Text="Type du Pokémon : "  TextColor="White" FontAttributes="Bold" Margin="20,0,0,0"/>
+        <Picker x:Name="saisieType" Title="Selectionner un type" TitleColor="White" TextColor="White" Margin="20,0,20,20">
             <Picker.Items>
                 <x:String>Acier</x:String>
                 <x:String>Combat</x:String>
@@ -37,10 +37,11 @@
         </Picker>
 
         <StackLayout x:Name="attackHp" Orientation="Horizontal" HorizontalOptions="Center">
-            <Entry x:Name="saisieHp" Placeholder="Points de vie" Keyboard="Numeric" TextColor="White" PlaceholderColor="White"/>
-            <Entry x:Name="saisieAttack" Placeholder="Points d'attaque" Keyboard="Numeric" TextColor="White" PlaceholderColor="White"/>
-            <Entry x:Name="saisieDefense" Placeholder="Points de défense" Keyboard="Numeric" TextColor="White" PlaceholderColor="White"/>
+            <Entry x:Name="saisieHp" Placeholder="Points de vie" Keyboard="Numeric" TextColor="White" PlaceholderColor="White" Margin="0,0,10,0"/>
+            <Entry x:Name="saisieAttack" Placeholder="Points d'attaque" Keyboard="Numeric" TextColor="White" PlaceholderColor="White" Margin="10,0,0,0"/>
         </StackLayout>
+
+        <Entry x:Name="saisieDefense" Placeholder="Points de défense" Keyboard="Numeric" TextColor="White" PlaceholderColor="White" HorizontalOptions="Center" Margin="0,0,0,20"/>
 
 
         <Button x:Name="btnValider" Text="Ajouter le Pokémon" Clicked="BtnAjouterPokemon"></Button>
