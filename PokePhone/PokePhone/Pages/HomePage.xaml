@@ -6,12 +6,14 @@
 
     <FlexLayout Direction="Column"
                 AlignItems="Center"
-                JustifyContent="SpaceEvenly">
+                JustifyContent="SpaceEvenly" 
+                BackgroundColor="#2f2733">
 
         <Image Source="PokePhoneLogo.png" />
 
         <Label Text="Bienvenue sur votre PokePhone !"
-               FontSize="Large" />
+               FontSize="Large" 
+               TextColor="White"/>
         
         <Image Source="GifAccueil.gif" IsAnimationPlaying="True"></Image>
         
