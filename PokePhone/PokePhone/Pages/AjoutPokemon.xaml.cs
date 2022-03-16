@@ -57,19 +57,24 @@ namespace PokePhone.Pages
         {
             await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            if (ajoutImageNonSuporte())
             {
                 await DisplayAlert("Non supporté", "Votre appareil ne supporte pas cette fonctionnalité", "Ok");
                 return;
             }
 
-            PickMediaOptions mediaOptions = new PickMediaOptions()
+            PickMediaOptions optionsDuMedia = new PickMediaOptions()
             {
                 PhotoSize = PhotoSize.Medium
             };
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-            saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
-            urlImagePokemon = selectedImageFile.AlbumPath;
+            var fichierImageSelectionne = await CrossMedia.Current.PickPhotoAsync(optionsDuMedia);
+            saisieImage.Source = ImageSource.FromStream(() => fichierImageSelectionne.GetStream());
+            urlImagePokemon = fichierImageSelectionne.AlbumPath;
+        }
+
+        private static bool ajoutImageNonSuporte()
+        {
+            return !CrossMedia.Current.IsPickPhotoSupported;
         }
 
         public async void BtnAjouterPokemon(object sender, EventArgs args)
@@ -81,7 +86,7 @@ namespace PokePhone.Pages
                 saisieDefense.PlaceholderColor = Color.Red;
                 saisieNom.PlaceholderColor = Color.Red;
                 saisieType.TitleColor = Color.Red;
-                await DisplayAlert("Erreur", "Veuilliez remplier tous les champs", "Ok");
+                await DisplayAlert("Erreur", "Veuilliez remplissez tous les champs", "Ok");
             }
             else
             {
@@ -107,9 +112,9 @@ namespace PokePhone.Pages
         }
         private bool ChampsSontRemplis()
         {
-            return saisieHp.Text != "" && saisieAttack.Text != "" 
-                && saisieDefense.Text != "" && saisieNom.Text != ""
-                && urlImagePokemon != "";
+            return (saisieHp.Text != "") && (saisieAttack.Text != "") 
+                && (saisieDefense.Text != "") && (saisieNom.Text != "")
+                && (urlImagePokemon != "");
         }
     }
 }
