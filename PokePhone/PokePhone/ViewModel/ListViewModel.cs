@@ -107,7 +107,7 @@ namespace PokePhone.ViewModel
         {
             //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci
             CreerListePokemonsViaBDD();
-            //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide
+            //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide (TODO : A VERIF !!!!)
             if (ListOfPokemon.Equals(null))
             {
                 CreerListePokemonViaAPI();
