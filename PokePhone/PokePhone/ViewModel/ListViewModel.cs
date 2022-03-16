@@ -79,9 +79,14 @@ namespace PokePhone.ViewModel
                 {
                     mypokemon.Gender += ", Female";
                 }
-                mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.Type);
+
+                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
+                
                 App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
+
+                ListOfPokemon = new ObservableCollection<MyPokemon>(App.BaseDeDonnees.GetPokemonsAsync().Result);
+
             }
         }
         private String ColoreFondPokemonSelonType(string typePokemon)
