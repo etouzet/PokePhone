@@ -67,8 +67,16 @@ namespace PokePhone.Pages
             {
                 PhotoSize = PhotoSize.Medium
             };
+
             var fichierImageSelectionne = await CrossMedia.Current.PickPhotoAsync(optionsDuMedia);
-            saisieImage.Source = ImageSource.FromStream(() => fichierImageSelectionne.GetStream());
+            if(fichierImageSelectionne != null)
+            {
+                saisieImage.Source = ImageSource.FromStream(() => fichierImageSelectionne.GetStream());
+            } else
+            {
+                saisieImage.Source = "add.png";
+            }
+            
             urlImagePokemon = fichierImageSelectionne.AlbumPath;
         }
 
@@ -86,14 +94,16 @@ namespace PokePhone.Pages
                 saisieDefense.PlaceholderColor = Color.Red;
                 saisieNom.PlaceholderColor = Color.Red;
                 saisieType.TitleColor = Color.Red;
-                await DisplayAlert("Erreur", "Veuilliez remplissez tous les champs", "Ok");
+
+                await DisplayAlert("Erreur", "Veuillez remplir tous les champs", "Ok");
+
             }
             else
             {
                 MyPokemon myPokemon = CreerPokemon();
                 await DisplayAlert("Ajouter Pokémon", myPokemon.Name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
-                //AjouterPokemonBDD(myPokemon);
+                AjouterPokemonBDD(myPokemon); 
                 saisieHp.PlaceholderColor = Color.White;
                 saisieAttack.PlaceholderColor = Color.White;
                 saisieDefense.PlaceholderColor = Color.White;

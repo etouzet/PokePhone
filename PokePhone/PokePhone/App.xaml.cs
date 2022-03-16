@@ -22,6 +22,7 @@ namespace PokePhone
                 return baseDeDonnees;
             }
         }
+
         public App()
         {
             InitializeComponent();
