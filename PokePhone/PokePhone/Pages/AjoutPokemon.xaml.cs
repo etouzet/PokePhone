@@ -15,6 +15,9 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AjoutPokemon : ContentPage
     {
+        /*Cette variable sert à recupérer la dernière image récupérée, car le type de ".Source" de l'image button n'as pas l'air de permettre
+         une récupération de l'url*/
+        private string urlImagePokemon = "";
         public AjoutPokemon()
         {
             InitializeComponent();
@@ -35,10 +38,12 @@ namespace PokePhone.Pages
             {
                 nouveauPokemon.Name = saisieNom.Text;
                 nouveauPokemon.Type = saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.Type2 = saisieType2.Items[saisieType2.SelectedIndex];
                 nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
                 nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
                 nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
-                nouveauPokemon.Image = Convert.ToString(saisieImage.Source);
+                //var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
+                nouveauPokemon.Image = urlImagePokemon; /*Convert.ToString(stream.ToString());*/
             }
             catch (Exception)
             {
@@ -52,38 +57,46 @@ namespace PokePhone.Pages
         {
             await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            if (ajoutImageNonSuporte())
             {
                 await DisplayAlert("Non supporté", "Votre appareil ne supporte pas cette fonctionnalité", "Ok");
                 return;
             }
 
-            PickMediaOptions mediaOptions = new PickMediaOptions()
+            PickMediaOptions optionsDuMedia = new PickMediaOptions()
             {
                 PhotoSize = PhotoSize.Medium
             };
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-            
-            if(selectedImageFile != null)
+
+            var fichierImageSelectionne = await CrossMedia.Current.PickPhotoAsync(optionsDuMedia);
+            if(fichierImageSelectionne != null)
             {
-                saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+                saisieImage.Source = ImageSource.FromStream(() => fichierImageSelectionne.GetStream());
             } else
             {
                 saisieImage.Source = "add.png";
             }
             
+            urlImagePokemon = fichierImageSelectionne.AlbumPath;
+        }
+
+        private static bool ajoutImageNonSuporte()
+        {
+            return !CrossMedia.Current.IsPickPhotoSupported;
         }
 
         public async void BtnAjouterPokemon(object sender, EventArgs args)
         {
-            if (!ChampsSonRemplis())
+            if (!ChampsSontRemplis())
             {
                 saisieHp.PlaceholderColor = Color.Red;
                 saisieAttack.PlaceholderColor = Color.Red;
                 saisieDefense.PlaceholderColor = Color.Red;
                 saisieNom.PlaceholderColor = Color.Red;
                 saisieType.TitleColor = Color.Red;
+
                 await DisplayAlert("Erreur", "Veuillez remplir tous les champs", "Ok");
+
             }
             else
             {
@@ -103,14 +116,15 @@ namespace PokePhone.Pages
                 saisieDefense.Text = null;
                 saisieNom.Text = null;
                 saisieType.SelectedItem = null ;
+                urlImagePokemon = "";
             }
 
         }
-
-        private bool ChampsSonRemplis()
+        private bool ChampsSontRemplis()
         {
-            return saisieHp.Text != "" && saisieAttack.Text != "" 
-                && saisieDefense.Text != "" && saisieNom.Text != "";
+            return (saisieHp.Text != "") && (saisieAttack.Text != "") 
+                && (saisieDefense.Text != "") && (saisieNom.Text != "")
+                && (urlImagePokemon != "");
         }
     }
 }

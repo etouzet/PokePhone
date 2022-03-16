@@ -18,9 +18,65 @@ namespace PokePhone.ViewModel
             ListOfPokemon = new ObservableCollection<MyPokemon>();
             InitList();
         }
-
         public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
-        public MyPokemon DernierPokemonTapper { get; private set; }
+        //Cette fonction ajoute les pokémons en base à une liste afficher par la suite dans la vue listePokemon
+        protected void CreerListePokemonsViaBDD()
+        {
+            List<MyPokemon> listpokemonsBDD = App.BaseDeDonnees.GetPokemonsAsync().Result;
+            foreach (MyPokemon pokemonBDD in listpokemonsBDD)
+            {
+                ListOfPokemon.Add(pokemonBDD);
+            }
+        }
+
+        protected async void CreerListePokemonViaAPI()
+        {
+            PokeApiClient pokeClient = new PokeApiClient();
+            //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
+            for (int i = 1; i <= 50; i++)
+            {
+                Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
+                MyPokemon mypokemon = new MyPokemon();
+                mypokemon.Name = pokemon.Name;
+                //Récupération des images du pokémon
+                mypokemon.Image = pokemon.Sprites.FrontDefault;
+                mypokemon.ImageFemelle = pokemon.Sprites.FrontFemale;
+                mypokemon.ImageShiny = pokemon.Sprites.FrontShiny;
+                //Récupération des hp du pokémon
+                mypokemon.Hp = pokemon.Stats[0].BaseStat;
+                //Récupération des points d'attaque du pokémon
+                mypokemon.Attaque = pokemon.Stats[1].BaseStat;
+                //Récupération de la défense du pokémon
+                mypokemon.Defense = pokemon.Stats[2].BaseStat;
+                //Récupération du type du pokémon
+                mypokemon.Type = pokemon.Types[0].Type.Name;
+                /*Cette ligne sert à vérifier que le pokémon à deux type avant d'essayer d'en ajouter un, 
+                 * car sinon on essaye d'accéder à un élément innexistant*/
+                if (pokemon.Types.Count > 1)
+                {
+                    mypokemon.Type2 = pokemon.Types[1].Type.Name;
+                }
+                //Récupération de l'id du pokémon
+                mypokemon.Id = pokemon.Id;
+                //Récupération des abilités du pokémon
+                mypokemon.Ability = pokemon.Abilities[0].Ability.Name;
+                mypokemon.Gender = "Male";
+                if (mypokemon.ImageFemelle != null)
+                {
+                    mypokemon.Gender += ", Female";
+                }
+
+                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
+                ListOfPokemon.Add(mypokemon);
+            }
+            AjouterListePokemonEnBDD();
+        }
+
+        private void AjouterListePokemonEnBDD()
+        {
+            //On ajoute les pokémons de l'API en BDD
+            App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
+        }
 
         //TODO : rendre ceci fonctionnelle pour afficher la liste des pokémons depuis la base de données (seulement OnAppearing()
         //Tuto : https://docs.microsoft.com/fr-fr/xamarin/get-started/tutorials/local-database/?tabs=vswin&tutorial-step=3
@@ -48,45 +104,14 @@ namespace PokePhone.ViewModel
         }
         /****added code****/
 
-        public async void InitList()
+        public void InitList()
         {
-
-        PokeApiClient pokeClient = new PokeApiClient();
-            //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
-            for (int i = 1; i <= 50; i++)
+            //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci
+            CreerListePokemonsViaBDD();
+            //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide (TODO : A VERIF !!!!)
+            if (ListOfPokemon.Equals(null))
             {
-                Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
-                MyPokemon mypokemon = new MyPokemon();
-                mypokemon.Name = pokemon.Name;
-                //Récupération des images du pokémon
-                mypokemon.Image = pokemon.Sprites.FrontDefault;
-                mypokemon.ImageFemelle = pokemon.Sprites.FrontFemale;
-                mypokemon.ImageShiny = pokemon.Sprites.FrontShiny;
-                //Récupération des hp du pokémon
-                mypokemon.Hp = pokemon.Stats[0].BaseStat;
-                //Récupération des points d'attaque du pokémon
-                mypokemon.Attaque = pokemon.Stats[1].BaseStat;
-                //Récupération de la défense du pokémon
-                mypokemon.Defense = pokemon.Stats[2].BaseStat;
-                //Récupération du type du pokémon
-                mypokemon.Type = pokemon.Types[0].Type.Name;
-                //Récupération de l'id du pokémon
-                mypokemon.Id = pokemon.Id;
-                //Récupération des abilités du pokémon
-                mypokemon.Ability = pokemon.Abilities[0].Ability.Name;
-                mypokemon.Gender = "Male";
-                if (mypokemon.ImageFemelle != null)
-                {
-                    mypokemon.Gender += ", Female";
-                }
-
-                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
-                ListOfPokemon.Add(mypokemon);
-                
-                App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
-
-                ListOfPokemon = new ObservableCollection<MyPokemon>(App.BaseDeDonnees.GetPokemonsAsync().Result);
-
+                CreerListePokemonViaAPI();
             }
         }
         private String ColoreFondPokemonSelonType(string typePokemon)

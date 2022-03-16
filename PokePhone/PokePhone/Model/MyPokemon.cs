@@ -18,16 +18,17 @@ namespace PokePhone.Model
             public int Attaque { get; set; }
             public int Defense { get; set; }
             public string Type { get; set; }
+            public string Type2 { get; set; }
             public string Ability { get; set; }
             public string Gender { get; set; }
-            //Id du pokémon dans l'Api (et la BDD), pour pouvoir l'identifier et afficher le bon dans la liste
+            //Id du pokémon dans l'Api (et la BDD)
             [PrimaryKey,AutoIncrement]
             public int Id { get; set; }
             public String CouleurType { get; set; }
 
             public string VersChaine()
             {
-                return "Nom : " + this.Name + " Type " + this.Type + " Attaque " + this.Attaque.ToString() +
+                return "Nom : " + this.Name + " Type " + this.Type + " Type2 " + this.Type2 + " Attaque " + this.Attaque.ToString() +
                 " HP " + this.Hp.ToString() + " Defense " + this.Defense.ToString() + " Chemin de l'image " + this.Image.ToString();
             }
         }
