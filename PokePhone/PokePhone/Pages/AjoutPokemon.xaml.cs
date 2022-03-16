@@ -17,7 +17,7 @@ namespace PokePhone.Pages
     {
         /*Cette variable sert à recupérer la dernière image récupérée, car le type de ".Source" de l'image button n'as pas l'air de permettre
          une récupération de l'url*/
-        private string urlImagePokemon;
+        private string urlImagePokemon = "";
         public AjoutPokemon()
         {
             InitializeComponent();
@@ -42,8 +42,8 @@ namespace PokePhone.Pages
                 nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
                 nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
                 nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
-                var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
-                nouveauPokemon.Image = urlImagePokemon/*Convert.ToString(stream.ToString())*/;
+                //var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
+                nouveauPokemon.Image = urlImagePokemon; /*Convert.ToString(stream.ToString());*/
             }
             catch (Exception)
             {
@@ -74,7 +74,7 @@ namespace PokePhone.Pages
 
         public async void BtnAjouterPokemon(object sender, EventArgs args)
         {
-            if (!ChampsSonRemplis())
+            if (!ChampsSontRemplis())
             {
                 saisieHp.PlaceholderColor = Color.Red;
                 saisieAttack.PlaceholderColor = Color.Red;
@@ -101,13 +101,15 @@ namespace PokePhone.Pages
                 saisieDefense.Text = null;
                 saisieNom.Text = null;
                 saisieType.SelectedItem = null ;
+                urlImagePokemon = "";
             }
 
         }
-        private bool ChampsSonRemplis()
+        private bool ChampsSontRemplis()
         {
             return saisieHp.Text != "" && saisieAttack.Text != "" 
-                && saisieDefense.Text != "" && saisieNom.Text != "";
+                && saisieDefense.Text != "" && saisieNom.Text != ""
+                && urlImagePokemon != "";
         }
     }
 }
