@@ -4,7 +4,7 @@
              x:Class="PokePhone.Pages.AffichagePokemon">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#2f2733">
-            <Label x:Name="nomPokemon" Text="{Binding Name}"  TextColor="White" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold Italic"/>
+            <Label x:Name="nomPokemon" Text="{Binding Name}"  TextColor="White" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold,Italic"/>
             <StackLayout Orientation="Horizontal">
                 <StackLayout>
                     <Image Source="{Binding Image}" HeightRequest="150" WidthRequest="200"/>
@@ -14,11 +14,9 @@
                     <Image x:Name="imagePokemon" Source="{Binding ImageShiny}" HeightRequest="150" WidthRequest="200"/>
                     <Label Text="Shiny" HorizontalOptions="Center" TextColor="White"/>
                 </StackLayout>
-                
+
             </StackLayout>
-
-
-
+            
             <Frame BackgroundColor="{Binding CouleurType}" CornerRadius="10"  Margin="10">
                 <StackLayout Orientation="Horizontal" Spacing="80">
                     <StackLayout Margin="8" Orientation="Vertical" Spacing="10">

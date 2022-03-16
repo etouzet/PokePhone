@@ -15,6 +15,9 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AjoutPokemon : ContentPage
     {
+        /*Cette variable sert à recupérer la dernière image récupérée, car le type de ".Source" de l'image button n'as pas l'air de permettre
+         une récupération de l'url*/
+        private string urlImagePokemon;
         public AjoutPokemon()
         {
             InitializeComponent();
@@ -35,10 +38,12 @@ namespace PokePhone.Pages
             {
                 nouveauPokemon.Name = saisieNom.Text;
                 nouveauPokemon.Type = saisieType.Items[saisieType.SelectedIndex];
+                nouveauPokemon.Type2 = saisieType2.Items[saisieType2.SelectedIndex];
                 nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
                 nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
                 nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
-                nouveauPokemon.Image = Convert.ToString(saisieImage.Source);
+                var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
+                nouveauPokemon.Image = urlImagePokemon/*Convert.ToString(stream.ToString())*/;
             }
             catch (Exception)
             {
@@ -64,6 +69,7 @@ namespace PokePhone.Pages
             };
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
             saisieImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
+            urlImagePokemon = selectedImageFile.AlbumPath;
         }
 
         public async void BtnAjouterPokemon(object sender, EventArgs args)
@@ -98,7 +104,6 @@ namespace PokePhone.Pages
             }
 
         }
-
         private bool ChampsSonRemplis()
         {
             return saisieHp.Text != "" && saisieAttack.Text != "" 

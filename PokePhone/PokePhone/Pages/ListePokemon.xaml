@@ -9,11 +9,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame x:Name="affichagePokemon"  CornerRadius="10"  Margin="10" BackgroundColor="{Binding couleurType}">
+                        <Frame x:Name="affichagePokemon"  CornerRadius="10"  Margin="10" BackgroundColor="{Binding CouleurType}">
                             <StackLayout Margin="8" Orientation="Horizontal" x:Name="affichageBasePokemon">
                                 <Image Source="{Binding Image}" x:Name="imagePokemon" WidthRequest="125" HeightRequest="125" HorizontalOptions="Start"/>
                                 <Label x:Name="nomPokemon" FontAttributes="Bold" Text="{Binding Name}" Padding="0,20,0,0"/>
                                 <Label x:Name="typePokemon" Text="{Binding Type}" Padding="0,20,0,0"/>
+                                <Label x:Name="type2Pokemon" Text="{Binding Type2}" Padding="0,20,0,0"/>
                             </StackLayout>
                         </Frame>
                     </ViewCell>

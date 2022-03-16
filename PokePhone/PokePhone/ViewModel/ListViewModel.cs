@@ -18,9 +18,7 @@ namespace PokePhone.ViewModel
             ListOfPokemon = new ObservableCollection<MyPokemon>();
             InitList();
         }
-
         public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
-        public MyPokemon DernierPokemonTapper { get; private set; }
 
         //TODO : rendre ceci fonctionnelle pour afficher la liste des pokémons depuis la base de données (seulement OnAppearing()
         //Tuto : https://docs.microsoft.com/fr-fr/xamarin/get-started/tutorials/local-database/?tabs=vswin&tutorial-step=3
@@ -50,8 +48,7 @@ namespace PokePhone.ViewModel
 
         public async void InitList()
         {
-
-        PokeApiClient pokeClient = new PokeApiClient();
+            PokeApiClient pokeClient = new PokeApiClient();
             //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
             for (int i = 1; i <= 50; i++)
             {
@@ -70,6 +67,12 @@ namespace PokePhone.ViewModel
                 mypokemon.Defense = pokemon.Stats[2].BaseStat;
                 //Récupération du type du pokémon
                 mypokemon.Type = pokemon.Types[0].Type.Name;
+                /*Cette ligne sert à vérifier que le pokémon à deux type avant d'essayer d'en ajouter un, 
+                 * car sinon on essaye d'accéder à un élément innexistant*/
+                if (pokemon.Types.Count > 1)
+                {
+                    mypokemon.Type2 = pokemon.Types[1].Type.Name;
+                }
                 //Récupération de l'id du pokémon
                 mypokemon.Id = pokemon.Id;
                 //Récupération des abilités du pokémon
@@ -79,9 +82,9 @@ namespace PokePhone.ViewModel
                 {
                     mypokemon.Gender += ", Female";
                 }
-                mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.Type);
+                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
-                App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
+                //App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
             }
         }
         private String ColoreFondPokemonSelonType(string typePokemon)
