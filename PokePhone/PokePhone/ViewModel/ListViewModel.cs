@@ -28,12 +28,15 @@ namespace PokePhone.ViewModel
                 ListOfPokemon.Add(pokemonBDD);
             }
         }
-
+        //Cette fonction ajoute les pokémons de l'API à une liste afficher par la suite dans la vue listePokemon
         protected async void CreerListePokemonViaAPI()
         {
+            const int IndexPremierType = 1;
+            const int IndexDeuxiemeType = 2;
+            const int NombrePokemonPrisDansAPI = 50;
             PokeApiClient pokeClient = new PokeApiClient();
-            //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
-            for (int i = 1; i <= 50; i++)
+            //Ajout des pokémons de l'API dans une liste utilisée par l'application pour afficher les pokémons
+            for (int i = 1; i <= NombrePokemonPrisDansAPI; i++)
             {
                 Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
                 MyPokemon mypokemon = new MyPokemon();
@@ -49,12 +52,12 @@ namespace PokePhone.ViewModel
                 //Récupération de la défense du pokémon
                 mypokemon.Defense = pokemon.Stats[2].BaseStat;
                 //Récupération du type du pokémon
-                mypokemon.Type = pokemon.Types[0].Type.Name;
+                mypokemon.Type = pokemon.Types[IndexPremierType].Type.Name;
                 /*Cette ligne sert à vérifier que le pokémon à deux type avant d'essayer d'en ajouter un, 
                  * car sinon on essaye d'accéder à un élément innexistant*/
-                if (pokemon.Types.Count > 1)
+                if (VerifierPokemonADeuxTypes(pokemon))
                 {
-                    mypokemon.Type2 = pokemon.Types[1].Type.Name;
+                    mypokemon.Type2 = pokemon.Types[IndexDeuxiemeType].Type.Name;
                 }
                 //Récupération de l'id du pokémon
                 mypokemon.Id = pokemon.Id;
@@ -69,6 +72,11 @@ namespace PokePhone.ViewModel
                 ListOfPokemon.Add(mypokemon);
             }
             AjouterListePokemonEnBDD();
+        }
+        //Cette fonction vérifie qu'une pokémon à plusieurs type en testant la longueur du tableau contenant les types dans l'API
+        private bool VerifierPokemonADeuxTypes(Pokemon pokemon)
+        {
+            return pokemon.Types.Count > 1;
         }
 
         private void AjouterListePokemonEnBDD()
