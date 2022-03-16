@@ -53,7 +53,7 @@ namespace PokePhone.ViewModel
 
         PokeApiClient pokeClient = new PokeApiClient();
             //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 50; i++)
             {
                 Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
                 MyPokemon mypokemon = new MyPokemon();
@@ -110,7 +110,7 @@ namespace PokePhone.ViewModel
             listeCouleursTypePokemons.Add("steel", Color.FromRgb(79, 139, 159));
             listeCouleursTypePokemons.Add("fairy", Color.FromRgb(237, 145, 230));
             listeCouleursTypePokemons.Add("normal", Color.FromRgb(146, 155, 164));
-
+            listeCouleursTypePokemons.Add("poison", Color.FromRgb(171, 108, 201));
             return listeCouleursTypePokemons;
         }
     }

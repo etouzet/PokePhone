@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 using PokePhone.ViewModel;
 using PokePhone.Model;
 
-namespace PokePhone.Pages
+namespace PokePhone.Pages 
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AjoutPokemon : ContentPage
@@ -82,8 +82,21 @@ namespace PokePhone.Pages
                 MyPokemon myPokemon = CreerPokemon();
                 await DisplayAlert("Ajouter Pokémon", myPokemon.Name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
-                AjouterPokemonBDD(myPokemon);
+                //AjouterPokemonBDD(myPokemon);
+                saisieHp.PlaceholderColor = Color.White;
+                saisieAttack.PlaceholderColor = Color.White;
+                saisieDefense.PlaceholderColor = Color.White;
+                saisieNom.PlaceholderColor = Color.White;
+                saisieType.TitleColor = Color.White;
+
+                saisieImage.Source = "add.png";
+                saisieHp.Text = null;
+                saisieAttack.Text = null;
+                saisieDefense.Text = null;
+                saisieNom.Text = null;
+                saisieType.SelectedItem = null ;
             }
+
         }
 
         private bool ChampsSonRemplis()

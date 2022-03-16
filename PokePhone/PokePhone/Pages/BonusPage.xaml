@@ -4,8 +4,8 @@
              x:Class="PokePhone.Pages.BonusPage"
              Shell.NavBarIsVisible="False">
 
-      <StackLayout>
-          <Label Text="Bienvenue sur la page bonus !" />
+    <StackLayout BackgroundColor="#2f2733">
+          <Label Text="Bienvenue sur la page bonus !" TextColor="White"/>
       </StackLayout>
 
 </ContentPage>
