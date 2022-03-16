@@ -79,38 +79,38 @@ namespace PokePhone.ViewModel
                 {
                     mypokemon.Gender += ", Female";
                 }
-                //mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.Type);
+                mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
                 App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
             }
         }
-        private Color ColoreFondPokemonSelonType(string typePokemon)
+        private String ColoreFondPokemonSelonType(string typePokemon)
         {
-            Dictionary<string, Color> listeCouleursTypePokemons = CreerDictionnaireTypeCouleurPokemons();
+            Dictionary<string, String> listeCouleursTypePokemons = CreerDictionnaireTypeCouleurPokemons();
             return listeCouleursTypePokemons[typePokemon];
         }
         //TODO : mettre la définition ailleurs
-        private Dictionary<string, Color> CreerDictionnaireTypeCouleurPokemons()
+        private Dictionary<string, String> CreerDictionnaireTypeCouleurPokemons()
         {
-            Dictionary<string, Color> listeCouleursTypePokemons = new Dictionary<string, Color>();
-            listeCouleursTypePokemons.Add("fire", Color.FromRgb(254, 158, 84));
-            listeCouleursTypePokemons.Add("ice", Color.FromRgb(117, 207, 193));
-            listeCouleursTypePokemons.Add("water", Color.FromRgb(79, 146, 215));
-            listeCouleursTypePokemons.Add("grass", Color.FromRgb(102, 189, 90));
-            listeCouleursTypePokemons.Add("fighting", Color.FromRgb(207, 64, 108));
-            listeCouleursTypePokemons.Add("flying", Color.FromRgb(143, 171, 223));
-            listeCouleursTypePokemons.Add("electric", Color.FromRgb(244, 211, 58));
-            listeCouleursTypePokemons.Add("ground", Color.FromRgb(218, 123, 67));
-            listeCouleursTypePokemons.Add("psychic", Color.FromRgb(250, 115, 123));
-            listeCouleursTypePokemons.Add("rock", Color.FromRgb(199, 185, 141));
-            listeCouleursTypePokemons.Add("bug", Color.FromRgb(146, 194, 44));
-            listeCouleursTypePokemons.Add("dragon", Color.FromRgb(6, 111, 196));
-            listeCouleursTypePokemons.Add("ghost", Color.FromRgb(82, 107, 175));
-            listeCouleursTypePokemons.Add("dark", Color.FromRgb(90, 84, 102));
-            listeCouleursTypePokemons.Add("steel", Color.FromRgb(79, 139, 159));
-            listeCouleursTypePokemons.Add("fairy", Color.FromRgb(237, 145, 230));
-            listeCouleursTypePokemons.Add("normal", Color.FromRgb(146, 155, 164));
-            listeCouleursTypePokemons.Add("poison", Color.FromRgb(171, 108, 201));
+            Dictionary<string, String> listeCouleursTypePokemons = new Dictionary<string, String>();
+            listeCouleursTypePokemons.Add("fire", "#fe9e54");
+            listeCouleursTypePokemons.Add("ice", "#75cfc1");
+            listeCouleursTypePokemons.Add("water", "#4f92d7");
+            listeCouleursTypePokemons.Add("grass", "#66bd5a");
+            listeCouleursTypePokemons.Add("fighting", "#cf406c");
+            listeCouleursTypePokemons.Add("flying", "#8fabdf");
+            listeCouleursTypePokemons.Add("electric", "#f4d33a");
+            listeCouleursTypePokemons.Add("ground", "#da7b43");
+            listeCouleursTypePokemons.Add("psychic", "#fa737b");
+            listeCouleursTypePokemons.Add("rock", "#c7b98d");
+            listeCouleursTypePokemons.Add("bug", "#92c22c");
+            listeCouleursTypePokemons.Add("dragon", "#066fc4");
+            listeCouleursTypePokemons.Add("ghost", "#526baf");
+            listeCouleursTypePokemons.Add("dark", "#5a5466");
+            listeCouleursTypePokemons.Add("steel", "#4f8b9f");
+            listeCouleursTypePokemons.Add("fairy", "#ed91e6");
+            listeCouleursTypePokemons.Add("normal", "#929ba4");
+            listeCouleursTypePokemons.Add("poison", "#ab6cc9");
             return listeCouleursTypePokemons;
         }
     }
