@@ -23,8 +23,7 @@ namespace PokePhone.Model
             //Id du pokémon dans l'Api (et la BDD), pour pouvoir l'identifier et afficher le bon dans la liste
             [PrimaryKey,AutoIncrement]
             public int Id { get; set; }
-            //Cet attribut sert pour faire la couleur de fond lors de l'affichage du pokémon
-            public Color CouleurType { get; set; }
+            //public Color couleurType { get; set; }
 
             public string VersChaine()
             {

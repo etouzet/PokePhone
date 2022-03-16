@@ -16,19 +16,22 @@ namespace PokePhone.Model
             _baseDeDonnees.CreateTableAsync<MyPokemon>().Wait();
         }
 
-        public Task<List<MyPokemon>> GetPokemonAsync()
+        public Task<List<MyPokemon>> GetPokemonsAsync()
         {
             return _baseDeDonnees.Table<MyPokemon>().ToListAsync();
         }
-
+        
         public Task<int> SauvegarderPokemon(MyPokemon myPokemon)
         {
             return _baseDeDonnees.InsertAsync(myPokemon);
         }
-
-        internal Task GetPeopleAsync()
+        //Insère une liste de pokémons en base de données. A voir si c'est utile
+        public void SauvegarderPokemons(List<MyPokemon> myPokemons)
         {
-            throw new NotImplementedException();
+            foreach (MyPokemon myPokemon in myPokemons)
+            {
+                SauvegarderPokemon(myPokemon);
+            }
         }
     }
 }

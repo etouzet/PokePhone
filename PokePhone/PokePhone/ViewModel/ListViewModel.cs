@@ -26,7 +26,7 @@ namespace PokePhone.ViewModel
         //Tuto : https://docs.microsoft.com/fr-fr/xamarin/get-started/tutorials/local-database/?tabs=vswin&tutorial-step=3
         /****added code****/
         /*
-        protected override async void OnAppearing()
+        protected override async void CreerListViaBDD()
         {
             base.OnAppearing();
             collectionView.ItemsSource = await App.Database.GetPeopleAsync();
@@ -52,8 +52,6 @@ namespace PokePhone.ViewModel
         {
 
         PokeApiClient pokeClient = new PokeApiClient();
-        
-
             //Ajout des pokémons de l'API dans une liste utiliser par l'application pour afficher les pokémons
             for (int i = 1; i <= 20; i++)
             {
@@ -81,10 +79,9 @@ namespace PokePhone.ViewModel
                 {
                     mypokemon.Gender += ", Female";
                 }
-                
-                //Récupération de la couleur du type du pokémon
-                mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
+                //mypokemon.couleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
+                App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
             }
         }
         private Color ColoreFondPokemonSelonType(string typePokemon)
@@ -92,8 +89,8 @@ namespace PokePhone.ViewModel
             Dictionary<string, Color> listeCouleursTypePokemons = CreerDictionnaireTypeCouleurPokemons();
             return listeCouleursTypePokemons[typePokemon];
         }
-
-        private Dictionary<string,Color> CreerDictionnaireTypeCouleurPokemons()
+        //TODO : mettre la définition ailleurs
+        private Dictionary<string, Color> CreerDictionnaireTypeCouleurPokemons()
         {
             Dictionary<string, Color> listeCouleursTypePokemons = new Dictionary<string, Color>();
             listeCouleursTypePokemons.Add("fire", Color.FromRgb(254, 158, 84));

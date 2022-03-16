@@ -15,7 +15,6 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AjoutPokemon : ContentPage
     {
-        
         public AjoutPokemon()
         {
             InitializeComponent();
@@ -24,9 +23,8 @@ namespace PokePhone.Pages
         //TODO : trouver un truc pour l'ID des pokémons, car je ne l'ai pas définie dans CreerPokemon()
         async void AjouterPokemonBDD(MyPokemon myPokemon)
         {
+            /*On utilise un type intermédiaire pour la base de données d'un pokémon sans le champs couleurType*/
             await App.BaseDeDonnees.SauvegarderPokemon(myPokemon);
-            //nameEntry.Text = ageEntry.Text = string.Empty;
-            //collectionView.ItemsSource = await App.BaseDeDonnees.GetPeopleAsync();
         }
         /****added code****/
 
@@ -84,7 +82,7 @@ namespace PokePhone.Pages
                 MyPokemon myPokemon = CreerPokemon();
                 await DisplayAlert("Ajouter Pokémon", myPokemon.Name + " a été crée", "Ok");
                 await DisplayAlert("Stat pokémon", myPokemon.VersChaine(), "Ok");
-                //AjouterPokemonBDD(myPokemon);
+                AjouterPokemonBDD(myPokemon);
             }
         }
 

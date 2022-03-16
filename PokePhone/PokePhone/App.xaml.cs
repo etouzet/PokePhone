@@ -17,7 +17,7 @@ namespace PokePhone
             {
                 if (baseDeDonnees == null)
                 {
-                    baseDeDonnees = new BaseDeDonnees(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "cheminBDD"));
+                    baseDeDonnees = new BaseDeDonnees(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyPokemon.db"));
                 }
                 return baseDeDonnees;
             }
@@ -25,7 +25,6 @@ namespace PokePhone
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
