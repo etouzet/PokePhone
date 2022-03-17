@@ -3,6 +3,7 @@ using PokePhone.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace PokePhone.ViewModel
         public ListViewModel()
         {
             ListOfPokemon = new ObservableCollection<MyPokemon>();
-            InitList();
+            InitListAsync();
         }
         public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
         //Cette fonction ajoute les pokémons en base à une liste afficher par la suite dans la vue listePokemon
@@ -25,14 +26,17 @@ namespace PokePhone.ViewModel
             List<MyPokemon> listpokemonsBDD = App.BaseDeDonnees.GetPokemonsAsync().Result;
             foreach (MyPokemon pokemonBDD in listpokemonsBDD)
             {
+                Debug.WriteLine("QZESRDTFGYUHIJOPO9O8TI7REYTFJHKHIOYTYUFTGHCNVJGHDYRETRTYDFJGKUHIUOY8T7IURFJHV?GFRTYTIUYOJLKHJGKFRUT");
+                Debug.WriteLine("ajout de :" + pokemonBDD.Name);
                 ListOfPokemon.Add(pokemonBDD);
             }
         }
         //Cette fonction ajoute les pokémons de l'API à une liste afficher par la suite dans la vue listePokemon
         protected async void CreerListePokemonViaAPI()
         {
-            const int IndexPremierType = 1;
-            const int IndexDeuxiemeType = 2;
+            
+            const int IndexPremierType = 0;
+            const int IndexDeuxiemeType = 1;
             const int NombrePokemonPrisDansAPI = 50;
             PokeApiClient pokeClient = new PokeApiClient();
             //Ajout des pokémons de l'API dans une liste utilisée par l'application pour afficher les pokémons
@@ -71,6 +75,7 @@ namespace PokePhone.ViewModel
 
                 mypokemon.CouleurType = ColoreFondPokemonSelonType(mypokemon.Type);
                 ListOfPokemon.Add(mypokemon);
+                Debug.WriteLine("added " + mypokemon.Name+ " : i : " +i);
             }
             AjouterListePokemonEnBDD();
         }
@@ -86,40 +91,21 @@ namespace PokePhone.ViewModel
             App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
         }
 
-        //TODO : rendre ceci fonctionnelle pour afficher la liste des pokémons depuis la base de données (seulement OnAppearing()
-        //Tuto : https://docs.microsoft.com/fr-fr/xamarin/get-started/tutorials/local-database/?tabs=vswin&tutorial-step=3
-        /****added code****/
-        /*
-        protected override async void CreerListViaBDD()
-        {
-            base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetPeopleAsync();
-        }
-        //TODO mixée cette fonction avec ajouter pokémon
-        async void OnButtonClicked(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text) && !string.IsNullOrWhiteSpace(ageEntry.Text))
-            {
-                await App.Database.SavePersonAsync(new Person
-                {
-                    Name = nameEntry.Text,
-                    Age = int.Parse(ageEntry.Text)
-                });
-
-                nameEntry.Text = ageEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.BaseDeDonnees.GetPeopleAsync();
-            }
-        }
-        /****added code****/
-
-        public void InitList()
+       
+        public async Task InitListAsync()
         {
             //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci
-            CreerListePokemonsViaBDD();
+            //await App.BaseDeDonnees.NetoyerLaBDD();
+            
             //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide (TODO : A VERIF !!!!)
-            if (ListOfPokemon.Equals(null))
+            if (App.BaseDeDonnees.GetPokemonsAsync().Result.Count==0)
             {
+                Debug.WriteLine("ON PASSE PAR l'API!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 CreerListePokemonViaAPI();
+            } else
+            {
+                Debug.WriteLine("ON PASSE PAR LA BASE ???????????????????????????????????????????");
+                CreerListePokemonsViaBDD();
             }
         }
         private String ColoreFondPokemonSelonType(string typePokemon)

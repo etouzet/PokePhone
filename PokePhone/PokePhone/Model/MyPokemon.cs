@@ -24,7 +24,7 @@ namespace PokePhone.Model
             //Id du pokémon dans l'Api (et la BDD)
             [PrimaryKey,AutoIncrement]
             public int Id { get; set; }
-            public String CouleurType { get; set; }
+            public string CouleurType { get; set; }
 
             public string VersChaine()
             {

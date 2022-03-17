@@ -42,7 +42,7 @@ namespace PokePhone.Model
 
         public Task<int> NetoyerLaBDD()
         {
-            return _baseDeDonnees.Table<MyPokemon>().DeleteAsync();
+            return _baseDeDonnees.DeleteAllAsync<MyPokemon>();
         }
     }
 }

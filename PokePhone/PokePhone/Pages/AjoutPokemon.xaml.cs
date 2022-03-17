@@ -34,21 +34,28 @@ namespace PokePhone.Pages
         public MyPokemon CreerPokemon()
         {
             MyPokemon nouveauPokemon = new MyPokemon();
-            try
-            {
+            //try
+            //{
                 nouveauPokemon.Name = saisieNom.Text;
                 nouveauPokemon.Type = saisieType.Items[saisieType.SelectedIndex];
+            if (saisieType2.SelectedItem == null)
+            {
+                nouveauPokemon.Type2 = null;
+            } else
+            {
                 nouveauPokemon.Type2 = saisieType2.Items[saisieType2.SelectedIndex];
+            }
                 nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
                 nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
                 nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
+                nouveauPokemon.CouleurType = "#fe9e54";
                 //var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
                 nouveauPokemon.Image = urlImagePokemon; /*Convert.ToString(stream.ToString());*/
-            }
-            catch (Exception)
-            {
-                throw new Exception("Une erreur est survenue durant l'ajout du pokémon");
-            }
+            //}
+            //catch (Exception)
+            //{
+              //  throw new Exception("Une erreur est survenue durant l'ajout du pokémon");
+            //}
 
             return nouveauPokemon;
         }
@@ -127,4 +134,7 @@ namespace PokePhone.Pages
                 && (urlImagePokemon != "");
         }
     }
+
+
 }
+
