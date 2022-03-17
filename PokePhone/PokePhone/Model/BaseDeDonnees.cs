@@ -39,5 +39,10 @@ namespace PokePhone.Model
                 SauvegarderPokemon(myPokemon);
             }
         }
+
+        public Task<int> NetoyerLaBDD()
+        {
+            return _baseDeDonnees.Table<MyPokemon>().DeleteAsync();
+        }
     }
 }
