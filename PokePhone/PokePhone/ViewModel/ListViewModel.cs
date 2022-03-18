@@ -12,13 +12,25 @@ using Xamarin.Forms;
 
 namespace PokePhone.ViewModel
 {
-    public class ListViewModel : ContentView
+    public class ListViewModel : BaseViewModel
     {
+
+        private static ListViewModel _instance = new ListViewModel();
+
+
+        public static ListViewModel Instance
+        {
+            get { return _instance; }
+        }
+
         public ListViewModel()
         {
             ListOfPokemon = new ObservableCollection<MyPokemon>();
             InitListAsync();
         }
+
+        
+
         public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
         //Cette fonction ajoute les pokémons en base à une liste afficher par la suite dans la vue listePokemon
         protected void CreerListePokemonsViaBDD()
@@ -28,7 +40,14 @@ namespace PokePhone.ViewModel
             {
                 Debug.WriteLine("QZESRDTFGYUHIJOPO9O8TI7REYTFJHKHIOYTYUFTGHCNVJGHDYRETRTYDFJGKUHIUOY8T7IURFJHV?GFRTYTIUYOJLKHJGKFRUT");
                 Debug.WriteLine("ajout de :" + pokemonBDD.Name);
-                ListOfPokemon.Add(pokemonBDD);
+                if (pokemonBDD.Id<=50)
+                {
+                    ListOfPokemon.Add(pokemonBDD);
+                } else
+                {
+                    ListOfPokemon.Insert(0, pokemonBDD);
+                }
+                
             }
         }
         //Cette fonction ajoute les pokémons de l'API à une liste afficher par la suite dans la vue listePokemon
@@ -95,7 +114,7 @@ namespace PokePhone.ViewModel
         public async Task InitListAsync()
         {
             //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci
-           // await App.BaseDeDonnees.NetoyerLaBDD();
+            //await App.BaseDeDonnees.NetoyerLaBDD();
             
             //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide (TODO : A VERIF !!!!)
             if (App.BaseDeDonnees.GetPokemonsAsync().Result.Count==0)
@@ -108,7 +127,7 @@ namespace PokePhone.ViewModel
                 CreerListePokemonsViaBDD();
             }
         }
-        private String ColoreFondPokemonSelonType(string typePokemon)
+        public String ColoreFondPokemonSelonType(string typePokemon)
         {
             Dictionary<string, String> listeCouleursTypePokemons = CreerDictionnaireTypeCouleurPokemons();
             return listeCouleursTypePokemons[typePokemon];

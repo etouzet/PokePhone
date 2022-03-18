@@ -15,47 +15,47 @@
         <Label Text="Type du Pokémon : "  TextColor="White" FontAttributes="Bold" Margin="20,0,0,0"/>
         <Picker x:Name="saisieType" Title="Selectionner un type" TitleColor="White" TextColor="White" Margin="20,0,20,1">
             <Picker.Items>
-                <x:String>Acier</x:String>
-                <x:String>Combat</x:String>
-                <x:String>Dragon</x:String>
-                <x:String>Eau</x:String>
-                <x:String>Electrique</x:String>
-                <x:String>Fée</x:String>
-                <x:String>Feu</x:String>
-                <x:String>Glace</x:String>
-                <x:String>Insecte</x:String>
-                <x:String>Normal</x:String>
-                <x:String>Plante</x:String>
-                <x:String>Poison</x:String>
-                <x:String>Psy</x:String>
-                <x:String>Roche</x:String>
-                <x:String>Sol</x:String>
-                <x:String>Spectre</x:String>
-                <x:String>Ténèbres</x:String>
-                <x:String>Vol</x:String>
+                <x:String>bug</x:String>
+                <x:String>dark</x:String>
+                <x:String>dragon</x:String>
+                <x:String>electric</x:String>
+                <x:String>fairy</x:String>
+                <x:String>fighting</x:String>
+                <x:String>fire</x:String>
+                <x:String>flying</x:String>
+                <x:String>ghost</x:String>
+                <x:String>grass</x:String>
+                <x:String>ground</x:String>
+                <x:String>ice</x:String>
+                <x:String>normal</x:String>
+                <x:String>poison</x:String>
+                <x:String>psychic</x:String>
+                <x:String>rock</x:String>
+                <x:String>steel</x:String>
+                <x:String>water</x:String>
             </Picker.Items>
         </Picker>
 
         <Picker x:Name="saisieType2" Title="Selectionner un deuxième type" TitleColor="White" TextColor="White" Margin="20,0,20,0">
             <Picker.Items>
-                <x:String>Acier</x:String>
-                <x:String>Combat</x:String>
-                <x:String>Dragon</x:String>
-                <x:String>Eau</x:String>
-                <x:String>Electrique</x:String>
-                <x:String>Fée</x:String>
-                <x:String>Feu</x:String>
-                <x:String>Glace</x:String>
-                <x:String>Insecte</x:String>
-                <x:String>Normal</x:String>
-                <x:String>Plante</x:String>
-                <x:String>Poison</x:String>
-                <x:String>Psy</x:String>
-                <x:String>Roche</x:String>
-                <x:String>Sol</x:String>
-                <x:String>Spectre</x:String>
-                <x:String>Ténèbres</x:String>
-                <x:String>Vol</x:String>
+                <x:String>bug</x:String>
+                <x:String>dark</x:String>
+                <x:String>dragon</x:String>
+                <x:String>electric</x:String>
+                <x:String>fairy</x:String>
+                <x:String>fighting</x:String>
+                <x:String>fire</x:String>
+                <x:String>flying</x:String>
+                <x:String>ghost</x:String>
+                <x:String>grass</x:String>
+                <x:String>ground</x:String>
+                <x:String>ice</x:String>
+                <x:String>normal</x:String>
+                <x:String>poison</x:String>
+                <x:String>psychic</x:String>
+                <x:String>rock</x:String>
+                <x:String>steel</x:String>
+                <x:String>water</x:String>
             </Picker.Items>
         </Picker>
 

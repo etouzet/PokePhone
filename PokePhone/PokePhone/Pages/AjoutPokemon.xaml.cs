@@ -34,7 +34,7 @@ namespace PokePhone.Pages
         public MyPokemon CreerPokemon()
         {
             MyPokemon nouveauPokemon = new MyPokemon();
-
+            nouveauPokemon.Id = App.BaseDeDonnees.GetPokemonsAsync().Result.Count + 1;
                 nouveauPokemon.Name = saisieNom.Text;
                 nouveauPokemon.Type = saisieType.Items[saisieType.SelectedIndex];
             if (saisieType2.SelectedItem == null)
@@ -47,10 +47,13 @@ namespace PokePhone.Pages
                 nouveauPokemon.Hp = Convert.ToInt32(saisieHp.Text);
                 nouveauPokemon.Attaque = Convert.ToInt32(saisieAttack.Text);
                 nouveauPokemon.Defense = Convert.ToInt32(saisieDefense.Text);
-                nouveauPokemon.CouleurType = "#fe9e54";
+                //nouveauPokemon.CouleurType = "#fe9e54";
+                nouveauPokemon.CouleurType = ListViewModel.Instance.ColoreFondPokemonSelonType(nouveauPokemon.Type);
                 nouveauPokemon.Gender = "Male";
                 //var stream = saisieImage.Source.GetValue(StreamImageSource.StreamProperty);
                 nouveauPokemon.Image = urlImagePokemon; /*Convert.ToString(stream.ToString());*/
+                ListViewModel.Instance.ListOfPokemon.Insert(0, nouveauPokemon);
+                
 
             return nouveauPokemon;
         }
