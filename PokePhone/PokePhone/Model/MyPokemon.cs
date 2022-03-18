@@ -22,7 +22,7 @@ namespace PokePhone.Model
             public string Ability { get; set; }
             public string Gender { get; set; }
             //Id du pokémon dans l'Api (et la BDD)
-            [PrimaryKey,AutoIncrement]
+            [PrimaryKey]
             public int Id { get; set; }
             public string CouleurType { get; set; }
 
