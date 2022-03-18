@@ -121,6 +121,7 @@ namespace PokePhone.Pages
                 saisieDefense.Text = null;
                 saisieNom.Text = null;
                 saisieType.SelectedItem = null ;
+                saisieType2.SelectedItem = null;
                 urlImagePokemon = "";
             }
 
