@@ -23,6 +23,12 @@ namespace PokePhone.ViewModel
             get { return _instance; }
         }
 
+        public ObservableCollection<MyPokemon> ListOfPokemon
+        {
+            get => GetValue<ObservableCollection<MyPokemon>>();
+            set => SetValue(value);
+        }
+
         public ListViewModel()
         {
             ListOfPokemon = new ObservableCollection<MyPokemon>();
@@ -31,7 +37,7 @@ namespace PokePhone.ViewModel
 
         
 
-        public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
+        //public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
         //Cette fonction ajoute les pokémons en base à une liste afficher par la suite dans la vue listePokemon
         protected void CreerListePokemonsViaBDD()
         {

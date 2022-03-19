@@ -16,10 +16,11 @@ namespace PokePhone.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListePokemon : ContentPage
     {
+        ListViewModel listViewModel = ListViewModel.Instance;
         public ListePokemon()
         {
             InitializeComponent();
-            BindingContext = new ListViewModel();
+            BindingContext = listViewModel;
         }
 
         void OnClick(object sender, ItemTappedEventArgs e)
