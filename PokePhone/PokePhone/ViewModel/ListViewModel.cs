@@ -38,13 +38,13 @@ namespace PokePhone.ViewModel
         
 
         //public ObservableCollection<MyPokemon> ListOfPokemon { get; private set; }
-        //Cette fonction ajoute les pokémons en base à une liste afficher par la suite dans la vue listePokemon
+
+        //Cette fonction ajoute les pokémons de la base de données à la liste affichée par la suite dans la vue listePokemon
         protected void CreerListePokemonsViaBDD()
         {
             List<MyPokemon> listpokemonsBDD = App.BaseDeDonnees.GetPokemonsAsync().Result;
             foreach (MyPokemon pokemonBDD in listpokemonsBDD)
             {
-                Debug.WriteLine("QZESRDTFGYUHIJOPO9O8TI7REYTFJHKHIOYTYUFTGHCNVJGHDYRETRTYDFJGKUHIUOY8T7IURFJHV?GFRTYTIUYOJLKHJGKFRUT");
                 Debug.WriteLine("ajout de :" + pokemonBDD.Name);
                 if (pokemonBDD.Id<=50)
                 {
@@ -56,7 +56,9 @@ namespace PokePhone.ViewModel
                 
             }
         }
-        //Cette fonction ajoute les pokémons de l'API à une liste afficher par la suite dans la vue listePokemon
+
+
+        //Cette fonction ajoute les pokémons de l'API à la liste affichée par la suite dans la vue listePokemon si la base de données est vide
         protected async void CreerListePokemonViaAPI()
         {
             
@@ -83,7 +85,7 @@ namespace PokePhone.ViewModel
                 //Récupération du type du pokémon
                 mypokemon.Type = pokemon.Types[IndexPremierType].Type.Name;
                 /*Cette ligne sert à vérifier que le pokémon à deux type avant d'essayer d'en ajouter un, 
-                 * car sinon on essaye d'accéder à un élément innexistant*/
+                 * car sinon on essaye d'accéder à un élément inexistant*/
                 if (VerifierPokemonADeuxTypes(pokemon))
                 {
                     mypokemon.Type2 = pokemon.Types[IndexDeuxiemeType].Type.Name;
@@ -104,41 +106,46 @@ namespace PokePhone.ViewModel
             }
             AjouterListePokemonEnBDD();
         }
+
+
         //Cette fonction vérifie qu'une pokémon à plusieurs type en testant la longueur du tableau contenant les types dans l'API
         private bool VerifierPokemonADeuxTypes(Pokemon pokemon)
         {
             return pokemon.Types.Count > 1;
         }
 
+
+        //On ajoute les pokémons de l'API en BDD
         private void AjouterListePokemonEnBDD()
         {
-            //On ajoute les pokémons de l'API en BDD
             App.BaseDeDonnees.SauvegarderPokemons(ListOfPokemon.ToList());
         }
 
        
         public async Task InitListAsync()
         {
-            //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci
+            //Si la base de données est remplis, les pokémons sont insérés dans une liste à partir de celle-ci, sinon on part de l'API
             //await App.BaseDeDonnees.NetoyerLaBDD();
             
-            //Sinon, on part de l'API (on regarde si la liste est vide, si c'est le cas c'est que la BDD est vide (TODO : A VERIF !!!!)
             if (App.BaseDeDonnees.GetPokemonsAsync().Result.Count==0)
             {
-                Debug.WriteLine("ON PASSE PAR l'API!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 CreerListePokemonViaAPI();
             } else
             {
-                Debug.WriteLine("ON PASSE PAR LA BASE ???????????????????????????????????????????");
                 CreerListePokemonsViaBDD();
             }
         }
+
+
+        /*Récupère le couleur du pokemon en fonction de son type*/
         public String ColoreFondPokemonSelonType(string typePokemon)
         {
             Dictionary<string, String> listeCouleursTypePokemons = CreerDictionnaireTypeCouleurPokemons();
             return listeCouleursTypePokemons[typePokemon];
         }
-        //TODO : mettre la définition ailleurs
+        
+
+        /*Dictionnaire associant les types des pokemons à leur couleur*/
         private Dictionary<string, String> CreerDictionnaireTypeCouleurPokemons()
         {
             Dictionary<string, String> listeCouleursTypePokemons = new Dictionary<string, String>();

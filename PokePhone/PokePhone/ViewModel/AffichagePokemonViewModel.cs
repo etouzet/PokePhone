@@ -18,7 +18,7 @@ namespace PokePhone.ViewModel
 
         public void DefinirPokemonAfficher()
         {
-            PokemonAfficher = null; /*Chopper le dernierPokemonTapper*/
+            PokemonAfficher = null; 
         }
     }
 }

@@ -23,6 +23,7 @@ namespace PokePhone.Pages
             BindingContext = listViewModel;
         }
 
+        /*Ouvre la page de détails lors d'un clic sur les pokemons*/
         void OnClick(object sender, ItemTappedEventArgs e)
         {
             MyPokemon current = (e.Item as MyPokemon);

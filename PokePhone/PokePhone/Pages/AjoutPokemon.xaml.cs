@@ -22,15 +22,14 @@ namespace PokePhone.Pages
         {
             InitializeComponent();
         }
-        /****added code****/
-        //TODO : trouver un truc pour l'ID des pokémons, car je ne l'ai pas définie dans CreerPokemon()
+        
+        /*Permet d'enregistrer un pokemon dans la base de données*/
         async void AjouterPokemonBDD(MyPokemon myPokemon)
         {
-            /*On utilise un type intermédiaire pour la base de données d'un pokémon sans le champs couleurType*/
             await App.BaseDeDonnees.SauvegarderPokemon(myPokemon);
         }
-        /****added code****/
-
+        
+        /*Initialisation des caractéristiques du pokémons pour le créer à l'aide des informations entrées sur la page*/
         public MyPokemon CreerPokemon()
         {
             MyPokemon nouveauPokemon = new MyPokemon();
@@ -57,7 +56,9 @@ namespace PokePhone.Pages
 
             return nouveauPokemon;
         }
-        //TODO : Regler Franglais !
+        
+        /*Permet d'aller chercher une image dans la gallerie et enregistre son chemin pour le pokemon
+         * Si aucune image n'est choisie on remet l'image de base*/
         public async void AjouterImage(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -85,11 +86,13 @@ namespace PokePhone.Pages
             urlImagePokemon = fichierImageSelectionne.Path;
         }
 
+        /*Renvoie true si l'appareil ne peut pas utiliser la fonctionnalité pour prendre une photo*/
         private static bool ajoutImageNonSuporte()
         {
             return !CrossMedia.Current.IsPickPhotoSupported;
         }
 
+        /*Affiche une erreur en cas d'erreur de remplissage ou alors remet les valeurs à zero après avoir lancé la création du pokemon*/
         public async void BtnAjouterPokemon(object sender, EventArgs args)
         {
             if (!ChampsSontRemplis())
@@ -126,6 +129,8 @@ namespace PokePhone.Pages
             }
 
         }
+
+        /*Renvoie true si les champs sont tous remplis*/
         private bool ChampsSontRemplis()
         {
             return (saisieHp.Text != "") && (saisieAttack.Text != "") 
